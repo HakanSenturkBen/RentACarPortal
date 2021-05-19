@@ -19,6 +19,11 @@
     "@angular/platform-browser": "~11.2.10",
     "@angular/platform-browser-dynamic": "~11.2.10",
     "@angular/router": "~11.2.10",
+    "bootstrap": "^5.0.1",
+    "font-awesome": "^4.7.0",
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.6.0",
+    "ngx-gallery": "^5.10.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

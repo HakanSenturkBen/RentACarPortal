@@ -1,0 +1,29 @@
+<div class="container">
+<div *ngIf="dataLoaded==false" >
+  <app-waiting></app-waiting>
+</div>
+  
+<div class="mb-3">
+    <label for="filterText" class="form-label">color search</label>
+    
+    <div *ngIf="filterText">
+      <small> aranan: {{ filterText }} </small>
+    </div>
+  
+    <input
+      type="text "
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="color of car"
+    />
+  </div>
+  
+  <Ul type="menu" class="list group">
+    <li routerLink="">Full List</li>
+    <li   type="menu" *ngFor="let color of colors|filterColor:filterText " routerLink="cars/color/{{color.id}}">
+      {{ color.colorName }}
+    </li>
+    </Ul>
+
+  </div>

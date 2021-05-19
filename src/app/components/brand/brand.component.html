@@ -1,0 +1,27 @@
+<div class="container">
+<div *ngIf="dataLoaded == false">
+  <app-waiting></app-waiting>
+</div>
+
+<div class="mb-3">
+  <label for="filterText" class="form-label">brand search</label>
+  <div *ngIf="filterText">
+    <small> aranan: {{ filterText }} </small>
+  </div>
+
+  <input
+    type="text "
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="brand of car"
+  />
+</div>
+
+<Ul type="menu" class="list group">
+  <li routerLink="">Full List</li>
+  <li   type="menu" *ngFor="let brand of brands |filterBrand:filterText" routerLink="cars/brand/{{brand.id}}">
+    {{ brand.brandName }}
+  </li>
+</Ul>
+</div>

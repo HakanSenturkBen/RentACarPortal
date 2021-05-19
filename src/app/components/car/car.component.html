@@ -1,0 +1,57 @@
+
+  <div class="row">
+    <div class="col col-2">
+      <app-brand></app-brand>
+    </div>
+    <div class="col col-2">
+      <app-colors></app-colors>
+    </div>
+    <div class="col col-8">
+      <div class="container">
+      <div *ngIf="dataLoaded == false">
+        <app-waiting></app-waiting>
+      </div>
+      <div class="mb-3">
+        <label for="filterText" class="form-label">car search</label>
+        <div *ngIf="filterText">
+          <small> aranan: {{ filterText }} </small>
+        </div>
+
+        <input
+          type="text "
+          [(ngModel)]="filterText"
+          class="form-control"
+          id="filterText"
+          placeholder="brand of car"
+        />
+      </div>
+
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">brandName</th>
+            <th scope="col">colorName</th>
+            <th scope="col">modelYear</th>
+            <th scope="col">dailyPrice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let car of carbyInfos"
+            (click)="reDirection(car)" 
+            
+          >
+            <td>{{ car.carId }}</td>
+            <td>{{ car.brandName }}</td>
+            <td>{{ car.colorName }}</td>
+            <td>{{ car.modelYear }}</td>
+            <td>{{ car.dailyPrice|currency : "₺" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-customer></app-customer>
+  <app-rental></app-rental>
+</div>
