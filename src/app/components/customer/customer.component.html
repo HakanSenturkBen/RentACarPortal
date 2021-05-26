@@ -1,9 +1,9 @@
-<div class="container">
+
 <div *ngIf="dataLoaded == false">
     <app-waiting></app-waiting>
   </div>
 
-<div class="mb-3">
+<div class="col col-3">
     <label for="filterText" class="form-label">customer search</label>
     <div *ngIf="filterText">
       <small> aranan: {{ filterText }} </small>
@@ -41,4 +41,3 @@
           <td>{{c.state}}</td>
       </tbody>
   </table>
-</div>

@@ -21,7 +21,7 @@
   
   <Ul type="menu" class="list group">
     <li routerLink="">Full List</li>
-    <li   type="menu" *ngFor="let color of colors|filterColor:filterText " routerLink="cars/color/{{color.id}}">
+    <li   type="menu" *ngFor="let color of colors " routerLink="cars/color/{{color.id}}">
       {{ color.colorName }}
     </li>
     </Ul>

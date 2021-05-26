@@ -3,7 +3,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2vh;
+    height: 100vh;
     font-family: sans-serif;
 
 }
@@ -16,14 +16,14 @@ ul{
 ul li{
     list-style-type: none;
     font-size: 1rem;
-    letter-spacing: 30px;
-    animation: loading 3s linear infinite;
+    letter-spacing: 120px;
+    animation: loading 5s linear infinite;
 }
 @keyframes loading{
     0%{
         color:#ecbed3;
-        transform: translateX(-50px);
-        letter-spacing: 30px;
+        transform: translateX(-35px);
+        letter-spacing: 120px;
         opacity: 0;
     }
     10%{
@@ -33,13 +33,14 @@ ul li{
     }
     50%{
         color:#be256b;
-        letter-spacing: -30px;
+        letter-spacing: -120px;
         opacity: 1;
     }
     100%{
         
         color:#4c0f2b;
-        transform: translateX(50px);
+        transform: translateX(35px);
+        
         opacity: 0;
 
     }

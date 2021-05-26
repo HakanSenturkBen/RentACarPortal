@@ -1,0 +1,147 @@
+<form #userform="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col col-4">
+        <label class="form-label" for="exampleInput"
+          ><h5>Kiralama başlangıcı için tarih giriniz</h5></label
+        >
+        <input
+          [(ngModel)]="ilkTarih"
+          type="date"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="yyyy-MM-dd"
+          min="{{ minDate }}"
+          max="{{ maxDate }}"
+          required
+        />
+      </div>
+      <div class="col col-4">
+        <label for="exampleInput" class="form-label"
+          ><h5>Kiralama bitişi için tarih giriniz</h5></label
+        >
+        <input
+          [(ngModel)]="sonTarih"
+          type="date"
+          class="form-control"
+          id="exampleInput"
+          name="input"
+          ng-model="example.value"
+          placeholder="yyyy-MM-dd"
+          min="{{ ilkTarih }}"
+          max="{{ maxDate }}"
+          required
+        />
+      </div>
+    </div>
+    <button (click)="hesapla()" type="button" class="btn btn-lg btn-primary">
+      Calculate
+    </button>
+  </div>
+</form>
+<div *ngIf="tutar > 0 && modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" (click)="modalClose()">&times;</span>
+    
+    <h1>{{ tutar | currency: "tr " }}</h1>
+    {{ rastgele }}
+
+    <form  #forumum="ngForm" class="credit-card-form row">
+     
+      <div class="row gy-3">
+        <div class="col-md-6">
+          <label for="name" class="form-label">Name on card</label>
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder=""
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label for="creditCard" class="form-label">Credit card number</label>
+          <input
+            name="creditCard"
+            type="text"
+            mask="0000 0000 0000 0000"
+            [(ngModel)]="creditCard"
+            class="form-control"
+            id="creditCard"
+            placeholder=""
+          />
+        </div>
+
+        <div class="col-md-3">
+          <label for="cc-expiration" class="form-label">Expiration</label>
+          <input
+          
+            type="date"
+            class="form-control"
+            id="cc-expiration"
+            placeholder=""
+            min="{{ minDate }}"
+            required
+          />
+        </div>
+
+        <div class="col-md-3">
+          <label for="cc-cvv" class="form-label">CVV</label>
+          <input
+            type="text"
+            mask="000"
+            class="form-control"
+            id="cc-cvv"
+            placeholder=""
+            required
+          />
+        </div>
+
+        <div class="col col-3">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button
+              (click)="payAndFinish()"
+              style="font-size: 2rem"
+              type="w-100 btn btn-primary btn-lg"
+              class="btn btn-primary"
+            >
+              Pay and Finished
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="kucukmodal==true" class="modal">
+  <div class="modal-content" style="width: 25%; height: 50%">
+    <Form class="credit-card-form row">
+      <div class="container">
+        <h4>Lütfen bankanız tarafından size</h4>
+        <h4>gönderilen 8 haneli şifreyi giriniz</h4>
+        {{ rastgele }}
+        <label for="cc-number" class="form-label">Password</label>
+        <input
+          type="text"
+          [(ngModel)]="dogrula"
+          class="form-control"
+          id="cc-number"
+          placeholder="xxxx-xxxx"
+          required
+        />
+      </div>
+      <button
+        (click)="validate()"
+        style="font-size: 2rem"
+        type="w-100 btn btn-primary btn-lg"
+        class="btn btn-primary"
+      >
+     OK
+      </button>
+    </Form>
+  </div>
+  
+</div>

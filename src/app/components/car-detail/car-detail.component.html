@@ -1,72 +1,117 @@
 <div class="hakan">
-<div class="row">
-    <div class="col col-10">
-        <img src="./assets/Baslik{{xRes}}.png" alt="">
-        <img src="./assets/{{xRes}}.png" alt="">
+  <div *ngIf="dataLoaded == false">
+    <app-waiting></app-waiting>
+  </div>
+  <div id="ortala">
+    <img src="./assets/Baslik{{ xRes }}.png" alt="" />
+
+    <img src="./assets/{{ xRes }}.png" alt="" />
+    <button (click)="isTheCarAvaible()" type="button" class="btn btn-lg btn-primary" >
+      Rent it
+    </button>
+  </div>
+
+  <div
+    id="carouselExampleDark"
+    class="carousel carousel-dark slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleDark"
+        data-bs-slide-to="0"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleDark"
+        data-bs-slide-to="1"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleDark"
+        data-bs-slide-to="2"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleDark"
+        data-bs-slide-to="3"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleDark"
+        data-bs-slide-to="4"
+        class="active"
+      ></button>
     </div>
-</div>
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" class="active" ></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" class="active" ></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" class="active" ></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" class="active" ></button>
-          
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="2000">
+        <img src="{{ carImages[0].imagePath }}" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h5 style="color: aliceblue">First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
         </div>
-        <div class="carousel-inner" >
-          <div class="carousel-item active" data-bs-interval="2000">
-            <img src="{{carImages[0].imagePath}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5 style="color:aliceblue;">First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
-            </div>
-          </div>
-
-          <div class="carousel-item"  data-bs-interval="2000">
-            <img src="{{carImages[1].imagePath}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h1 style="color:aliceblue;">second slide label</h1>
-              <p>Some representative placeholder content for the third slide.</p>
-            </div>
-          </div>
-
-          <div class="carousel-item"  data-bs-interval="2000">
-            <img src="{{carImages[2].imagePath}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h1 style="color:blue;">Third slide label</h1>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-          </div>
-
-          <div class="carousel-item"  data-bs-interval="2000">
-            <img src="{{carImages[3].imagePath}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h1 style="color:yellow;">fourth slide label</h1>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div>
-          </div>
-
-          <div class="carousel-item"  data-bs-interval="2000">
-            <img src="{{carImages[4].imagePath}}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h1 style="color:green;">fifth slide label</h1>
-              <p>Some representative placeholder content for the third slide.</p>
-          </div>
-          </div>
-
-
-        </div>
-
-        
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
-    <h1 style="color:white;">{{carModel.brandName}}  {{carModel.dailyPrice}} TL Model : {{carModel.modelYear}} Renk : {{carModel.colorName}}</h1>
+
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{{ carImages[1].imagePath }}" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="color: aliceblue">second slide label</h1>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{{ carImages[2].imagePath }}" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="color: blue">Third slide label</h1>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{{ carImages[3].imagePath }}" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="color: yellow">fourth slide label</h1>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{{ carImages[4].imagePath }}" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="color: green">fifth slide label</h1>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <h1>
+    {{ carModel.brandName }} {{ carModel.dailyPrice }} TL Model :
+    {{ carModel.modelYear }} Renk : {{ carModel.colorName }}
+  </h1>
 </div>
+
