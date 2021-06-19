@@ -34,5 +34,26 @@ getCarsByBrand(brandId:number):Observable<ListResponseModel<CarInfoModel>>{
   return this.http.get<ListResponseModel<CarInfoModel>>(this.apiUrl+"getbybrandrid?brandId="+brandId);
 }
 
+saveCar(car:CarModel):Observable<SingleResponseModel<CarModel>>{
+  return this.http.post<SingleResponseModel<CarModel>>(this.apiUrl+"add",car)
+
+}
+
+updateCar(car:CarModel):Observable<SingleResponseModel<CarModel>>{
+  return this.http.post<SingleResponseModel<CarModel>>(this.apiUrl+"update",car)
+
+}
+
+delCar(car:CarModel):Observable<SingleResponseModel<CarModel>>{
+  return this.http.post<SingleResponseModel<CarModel>>(this.apiUrl+"delete",car)
+
+ 
+}
+
+delCarById(carId:number):Observable<SingleResponseModel<CarModel>>{
+  console.log("carId=",carId);
+  return this.http.post<SingleResponseModel<CarModel>>(this.apiUrl+"del?carId="+carId,carId)
+
+}
 
 }

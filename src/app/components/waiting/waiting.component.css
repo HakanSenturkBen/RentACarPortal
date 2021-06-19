@@ -16,14 +16,14 @@ ul{
 ul li{
     list-style-type: none;
     font-size: 1rem;
-    letter-spacing: 120px;
+    letter-spacing: 150px;
     animation: loading 5s linear infinite;
 }
 @keyframes loading{
     0%{
         color:#ecbed3;
         transform: translateX(-35px);
-        letter-spacing: 120px;
+        letter-spacing: 150px;
         opacity: 0;
     }
     10%{
@@ -33,7 +33,7 @@ ul li{
     }
     50%{
         color:#be256b;
-        letter-spacing: -120px;
+        letter-spacing: -150px;
         opacity: 1;
     }
     100%{

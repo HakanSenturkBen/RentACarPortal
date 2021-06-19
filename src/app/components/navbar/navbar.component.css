@@ -1,7 +1,6 @@
 .hakan{
-    width: 1475px;
+  
     float: center;
-    margin-left: 20px;
     align-items: center;
     justify-content: center;
     background-color:  #e54644;
@@ -13,6 +12,18 @@
 input{
     float: right;
     margin-right: 10px;
+}
+
+li{
+    border-radius:.5rem;
+    box-shadow:4px 4px 4px 4px rgba(0,0,0,0.3);
+    float: left;
+    margin-left: 10px;
+    
+}
+
+li:active{
+    box-shadow:2px 2px 2px 2px rgba(0,0,0,0.2);
 }
 
 

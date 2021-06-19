@@ -2,13 +2,17 @@
   <div *ngIf="dataLoaded == false">
     <app-waiting></app-waiting>
   </div>
+  
   <div id="ortala">
-    <img src="./assets/Baslik{{ xRes }}.png" alt="" />
+    <img src="./assets/{{ xRes }}Logo.png" alt="" />
 
-    <img src="./assets/{{ xRes }}.png" alt="" />
+    <img src="./assets/{{ xRes }}Yazi.png" alt="" />
     <button (click)="isTheCarAvaible()" type="button" class="btn btn-lg btn-primary" >
-      Rent it
+      Rent it 
+      
     </button>
+    
+
   </div>
 
   <div

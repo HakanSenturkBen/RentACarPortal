@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { CarInfoModel } from '../car/carInfoModel';
 
 @Component({
   selector: 'app-waiting',
@@ -9,6 +10,7 @@ export class WaitingComponent implements OnInit {
 
   constructor() { }
 
+  
 
   hakan:string[]=["o","o","o","o","o","o","o"]
     ngOnInit(): void {

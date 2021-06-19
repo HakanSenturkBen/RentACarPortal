@@ -21,6 +21,7 @@ export class CarDetailComponent implements OnInit {
   dataLoaded=false;
 
   xRes:string;
+  
 
   constructor(private activeRoute:ActivatedRoute,
     private carImage:CarImageService,
@@ -35,38 +36,41 @@ export class CarDetailComponent implements OnInit {
     this.activeRoute.params.subscribe(params=>{
       id=(params["carId"]);
     });
-    if(id==1){
-      this.xRes="Bugatti";
-    }else{this.xRes="Lamborghini";}
+    
     
     this.getPaths(id);
     this.carService.getCarById(id).subscribe(resp=>{
-      this.carModel=resp.data
+      this.carModel=resp.data;
+      this.xRes=this.carModel.brandName;
+      let splitted=this.xRes.split(" ",1)
+      this.xRes=splitted[0];
     });
-    
   }
 
+ 
   isTheCarAvaible(){
+    
     let id:number;
     this.activeRoute.params.subscribe(params=>{
       id=(params["carId"]);});
     this.rentalService.getRentalsDtoByCarId(id).subscribe(response=>{
-      console.log(response.message)
+      
       if(response.message=="uygun"){
-        this.tools.toastInfo("kiralama için uygun","top-center")
+        this.tools.toastInfo("kiralama için uygun lütfen tarih seçiniz","top-center")
         let carId=id
         this.tools.reDirection("carrental/"+carId)
-        
+        this.dataLoaded=true;
       }
-    },error=>{this.tools.toastInfo("araç şu an kirada","top-center")})
-    
+    },error=>{console.log(error)
+      this.tools.toastInfo(error.error.message.toString(),"top-center")})
+      this.dataLoaded=true;
   }  
 
   getPaths(id:number){
     
     this.carImage.getCarImagePaths(id).subscribe(response=>{
       this.carImages=response.data;
-      this.dataLoaded=true;
+      
     });
   
   }

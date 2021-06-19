@@ -3,5 +3,8 @@
     brandName:string,
     colorName:string, 
     modelYear:string,
-    dailyPrice:number
+    dailyPrice:number,
+    description:string,
+    active:boolean,
+    createDate:Date
 }

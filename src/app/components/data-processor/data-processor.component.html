@@ -1,0 +1,142 @@
+<div *ngIf="dataLoad==false">
+    
+    <app-waiting></app-waiting>
+</div>
+<body class="">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-info">
+                    <button (click)="addImage()" class=" card-category rightprimary">Resim ekle</button>
+                    <button (click)="addColor()" class=" card-category rightsuccess">Renk ekle </button>
+                    <button (click)="addBrand()" class=" card-category rightinfo"> Marka ekle</button>
+                    <button (click)="addCar()" class=" card-category rightsecondary">Araç ekle</button>
+                      <h4 class="card-title ">Car List</h4>
+                      <p class="card-category"> Araç listesinin sonundaki butonları kullanara kayıt düzeltme,silme, kayıttan çoğaltma işlemleri yapabilirsiniz</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <th>Otomobil Adı</th>
+                          <th>Otomobil Rengi</th>
+                          <th>Model Yılı</th>
+                          <th>Günlük Ücreti</th>
+                          <th>Güncelle</th>
+                          <th>Sil</th>
+                        </thead>
+                        <tbody> 
+                            
+                          <tr *ngFor="let car of cars">
+                            <td (click)="getCurrent(car)">{{car.brandName}}</td>
+                            <td>{{car.colorName}}</td>
+                            <td>{{car.modelYear}}</td>
+                            <td>{{car.dailyPrice}}</td>
+                            <td (click)="getCurrent(car)"><button class="rightinfo-ligthShadow" title="Güncelle (kayıt üzerinde değişiklik yap)"><i class="material-icons">update</i></button></td>
+                            <td><button class="rightwarning-ligthShadow" (click)="delete(car)" title="Sil (Bu satırdaki ilgili kayıt kesin olarak silinir)"><i class="material-icons">delete</i></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div *ngIf="updateWindow==true">
+                   <car-data 
+                             [brandlist]="brands"
+                             [colorlist]="colors"
+                             [carDetail]="changeCar" >
+                             
+                    </car-data></div>
+                <div *ngIf="openDialog=='0'">
+                    <dialog-boxing (childEvent)="openDialogStatus($event)"></dialog-boxing>
+                  </div>
+              <div class="col-md-6">
+                <div class="card card-plain">
+                  <div class="card-header card-header-warning">
+                    <h4 class="card-title mt-0"> Araç Renkleri</h4>
+                    <p class="card-category"> Sistemde kayıtlı araç renkleri listesi</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead class="">
+                          <th>ID</th>
+                          <th>Renk</th>
+                          <th>Güncelle</th>
+                          <th>Sil</th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let x of colors">
+                            <td>{{x.id}}</td>
+                            <td>{{x.colorName}}</td>
+                            <td><button (click)="getColorWindow(x)" class="rightinfo-ligthShadow" title="Güncelle (kayıt üzerinde değişiklik yap)"><i class="material-icons">update</i></button></td>
+                            <td><button (click)="delColor(x)" class="rightwarning-ligthShadow" title="Sil (Bu satırdaki ilgili kayıt kesin olarak silinir)"><i class="material-icons">delete</i></button></td>
+                         
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+             <div class="col-md-6">
+                <div class="card card-plain">
+                  <div class="card-header card-header-success">
+                    <h4 class="card-title mt-0"> Araç Markaları</h4>
+                    <p class="card-category"> Sistemde kayıtlı araç markalarının listesi</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead class="">
+                          <th>ID</th>
+                          <th>Marka</th>
+                          <th>Güncelle</th>
+                          <th>Sil</th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let x of brands">
+                            <td>{{x.id}}</td>
+                            <td>{{x.brandName}}</td>
+                            <td><button (click)="getBrandWindow(x)" class="rightinfo-ligthShadow" title="Güncelle (kayıt üzerinde değişiklik yap)"><i class="material-icons">update</i></button></td>
+                            <td><button (click)="delBrand(x)" class="rightwarning-ligthShadow" title="Sil (Bu satırdaki ilgili kayıt kesin olarak silinir)"><i class="material-icons">delete</i></button></td>
+                         
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div *ngIf="addCarWindow==true">
+            <add-car (childEvent)="addCarWindow=$event"></add-car>
+          </div>
+
+          <div *ngIf="addBrandWindow==true">
+            <add-brand (childEvent)="addBrandWindow=$event"></add-brand>
+          </div>
+
+          <div *ngIf="addColorWindow==true">
+            <add-color  (childEvent)="addColorWindow=$event"></add-color>
+          </div>
+
+          <div *ngIf="addImageWindow==true">
+            <add-image (childEvent)="addImageWindow=$event"></add-image>
+          </div>
+
+          <div *ngIf="updateBrandWindow==true">
+            <app-brand-data [brand]="brand"></app-brand-data>
+          </div>
+
+          <div *ngIf="updateColorWindow==true">
+            <app-color-data [color]="color"></app-color-data>
+          </div>
+  </body>
+
+ 

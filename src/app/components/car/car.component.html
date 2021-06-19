@@ -1,9 +1,6 @@
-
-
-
+<div class="container">
   <div class="row">
     <div class="col col-12">
-      <div class="container">
       <div *ngIf="dataLoaded == false">
         <app-waiting></app-waiting>
       </div>
@@ -11,20 +8,24 @@
         <div class="col col-5">
           <label for="filterText" class="form-label">car search</label>
           <div *ngIf="filterText">
-            <span class="badge badge-pill badge-success"> {{filterText}}</span>
+            <span class="badge badge-pill badge-success">
+              {{ filterText }}</span>
           </div>
-          <input type="text " [(ngModel)]="filterText"  class="form-control" id="filterText" placeholder="brand of car" required>
+          <input type="text " [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="brand of car"
+            required />
         </div>
 
         <div class="col col-3">
           <label for="filterText" class="form-label">car search</label>
           <div *ngIf="filterText">
-              <small> aranan: {{ filterText }} </small>
+            <small> aranan: {{ filterText }} </small>
           </div>
 
           <select [(ngModel)]="filterText" class="form-select">
             <option [value]="''">full list</option>
-            <option *ngFor="let brand of brands" [value]="brand.brandName">{{brand.brandName}}</option>
+            <option *ngFor="let brand of brands" [value]="brand.brandName">
+              {{ brand.brandName }}
+            </option>
           </select>
         </div>
 
@@ -36,40 +37,38 @@
 
           <select [(ngModel)]="colorFilter" class="form-select">
             <option [value]="''">full list</option>
-            <option *ngFor="let color of colors" [value]="color.colorName">{{color.colorName}}</option>
-         </select>
-        </div>    
+            <option *ngFor="let color of colors" [value]="color.colorName">
+              {{ color.colorName }}
+            </option>
+          </select>
+        </div>
       </div>
-     
-    <br>
- 
 
+      <br />
 
-  <div class="row ">
-    <div class="col col-4" *ngFor="let car of carbyInfos |filterCar:filterText |filterColor:colorFilter">
-    <div (click)="reDirection(car)"  class="card" >
-      
-      <div class="card-header">
-        <h4 class="card-title">{{car.brandName}}</h4>
-        <img src="./assets/{{car.brandName}}01.png"  alt="...">
-        <p class="category">Category subtitle</p>
+      <div class="row">
+        <div class="col col-4" *ngFor="
+            let car of carbyInfos
+              | filterCar: filterText
+              | filterColor: colorFilter
+          ">
+          <div (click)="reDirection(car)" class="card">
+            <div class="card-header">
+              <h4 class="card-title">{{ car.brandName }}</h4>
+              <img src="./assets/{{ car.brandName }}01.png" alt="..." />
+              <p class="category">Category subtitle</p>
+            </div>
+            <div class="card-body">
+              <ul>
+                <li>{{ car.brandName }}</li>
+                <li>{{ car.colorName }}</li>
+                <li>{{ car.modelYear }}</li>
+                <li>{{ car.dailyPrice | currency: "₺" }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div   class="card-body">
-        <ul >
-          <li ><span class="badge">●</span> {{ car.brandName }}</li>
-          <li ><span class="badge">●</span> {{car.colorName }}</li>
-          <li ><span class="badge">●</span> {{ car.modelYear}}     </li>
-          <li ><span class="badge">●</span> {{car.dailyPrice|currency : "₺" }}</li>
-
-        </ul>
-      </div>
-    </div>
     </div>
   </div>
 </div>
-</div>
-</div>
-
-  
-
-

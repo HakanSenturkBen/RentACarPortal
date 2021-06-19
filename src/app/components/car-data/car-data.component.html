@@ -1,0 +1,168 @@
+<div class="modal">
+  <div class="modal-content">
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card card-profile">
+              <div class="card-avatar">
+                <div class="text-center">
+                  <img
+                    id="prof"
+                    src="../assets/{{ baslik }}Logo.png"
+                    width="100"
+                    height="100"
+                    alt="..."
+                  />
+                </div>
+              </div>
+              <div class="card-body">
+                <h6 class="card-category text-gray"></h6>
+                <h4 class="card-title">{{ carDetail.brandName }}</h4>
+                <ul>
+                  <li>{{ carDetail.carId }}</li>
+                  <li>{{ carDetail.brandName }}</li>
+                  <li>{{ carDetail.colorName }}</li>
+                  <li>{{ carDetail.modelYear }}</li>
+                  <li>{{ carDetail.dailyPrice }}</li>
+                </ul>
+                <p class="card-description">bla bla bla</p>
+
+                <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Kaydı Düzenle</h4>
+                
+              </div>
+              <div class="card-body">
+                <form #carForm="ngForm">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <label class="bmd-label-floating">Araç adı </label>
+                      <select
+                        class="form-select"
+                        [(ngModel)]="carDetail.brandName"
+                        #brandName="ngModel"
+                        name="carDetail.brandName"
+                      >
+                        <option *ngFor="let brand of brandlist">
+                          {{ brand.brandName }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-5">
+                      <label class="bmd-label-floating">Araç Rengi</label>
+                      <select
+                        class="form-select"
+                        [(ngModel)]="carDetail.colorName"
+                        #colorName="ngModel"
+                        name="carDetail.colorName"
+                      >
+                        <option *ngFor="let color of colorlist">
+                          {{ color.colorName }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-5">
+                      <label class="bmd-label-floating">Günlük kira</label>
+                      <input
+                        [(ngModel)]="carDetail.dailyPrice"
+                        #dailyPrice="ngModel"
+                        name="carDetail.dailyPrice"
+                        type="number"
+                        min="1750"
+                        max="3500"
+                        class="form-control"
+                        (change)="log(dailyPrice)"
+                        required
+                      />
+                      <div *ngIf="dailyPrice.touched && !dailyPrice.valid">
+                        <div *ngIf="dailyPrice.errors.min">
+                          <small class="text alert-success"
+                            >günlük ücret aralık dışında</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-5">
+                      <label class="bmd-label-floating">Model Yılı</label>
+                      <input
+                        [(ngModel)]="carDetail.modelYear"
+                        #dailyPrice="ngModel"
+                        name="carDetail.modelYear"
+                        type="text"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-md-5">
+                      <label class="bmd-label-floating">Aktiflik</label>
+                      <input
+                        [(ngModel)]="carDetail.active"
+                        #dailyPrice="ngModel"
+                        name="car.active"
+                        type="text"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="col-md-5">
+                      <label class="bmd-label-floating">Kayıt tarihi</label>
+                      <input
+                        [(ngModel)]="carDetail.createDate"
+                        #dailyPrice="ngModel"
+                        name="car.createDate"
+                        type="text"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>About car</label>
+                        <div class="form-group bmd-form-group">
+                          <textarea class="form-control" rows="5"
+                            >{{ carDetail.description | json }}.</textarea
+                          >
+                        </div>
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col col-12">
+                              <button (click)="save()" class="card-header card-header-success">
+                                <span class="card-category "><i class="material-icons text-center">save</i>Kayıt</span>
+                              </button>
+
+                              <button (click)="update()" class="card-header card-header-warning" style="padding: 10px;">
+                                <span class=" card-category"><i class="material-icons">update</i>Güncelle</span>
+                              </button>
+
+                              <button (click)="delete()" class="card-header card-header-danger" style="padding: 10px;">
+                                <span class="card-category"><i class="material-icons">delete</i></span>Sil
+                              </button>
+
+                              <button (click)="modalClose()" class="card-header card-header-info" style="padding: 10px;">
+                                <span class=" card-category"><i class="material-icons">logout</i></span>Geri
+                              </button>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

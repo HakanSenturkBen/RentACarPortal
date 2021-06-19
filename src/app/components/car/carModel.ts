@@ -5,6 +5,6 @@ export interface CarModel{
     modelYear:string,
     dailyPrice:number,
     description:string,
-    createDate:Date,
+    createDate:string,
     active:boolean
 }

@@ -1,0 +1,28 @@
+<div class="modal">
+    <div class="modal-content">
+        <div class="content form-floating">
+            <form [formGroup]="addBrandForm" >
+              <div class="form-floating">
+                    <input class="form-control"
+                        placeholder="Leave a comment here"
+                        id="floatingTextarea2"
+                        formControlName="brandName"
+                        minlength="2"
+                        maxlength="50"
+                        required
+                        style="height: 50px">
+                    <label for="floatingTextarea2">Brand Name</label>
+                </div>
+
+
+                <button (click)="onChange(false)" class="card-header rightsuccess">
+                    <span class="card-category "><i class="material-icons text-center">cancel</i>vazgeç</span>
+                </button>
+
+                <button (click)="save(false)" class="card-header rightprimary">
+                    <span class="card-category "><i class="material-icons text-center">save</i>Kayıt</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

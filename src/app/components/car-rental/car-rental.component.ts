@@ -35,7 +35,13 @@ export class CarRentalComponent implements OnInit {
   rastgele:string;
   dogrula:string;
   kucukmodal=false;
-  kart:CreditCard;
+  kart:CreditCard={ id: 11,
+    cardNumber: "",
+    dateofIssue: null,
+    validationDate: null,
+    cvv: "",
+    limit: null,
+    cardHolderName: ""};
   
   constructor(private carService:CarService,
     private activeRoute:ActivatedRoute,

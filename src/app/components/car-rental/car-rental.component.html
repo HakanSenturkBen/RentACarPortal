@@ -1,16 +1,19 @@
-<form #userform="ngForm">
+
+
+
+<form >
   <div class="container">
     <div class="row">
       <div class="col col-4">
-        <label class="form-label" for="exampleInput"
+        <label class="form-label" for="rentDate"
           ><h5>Kiralama başlangıcı için tarih giriniz</h5></label
         >
         <input
           [(ngModel)]="ilkTarih"
           type="date"
           class="form-control"
-          id="name"
-          name="name"
+          id="rentDate"
+          name="rentDate"
           placeholder="yyyy-MM-dd"
           min="{{ minDate }}"
           max="{{ maxDate }}"
@@ -18,15 +21,15 @@
         />
       </div>
       <div class="col col-4">
-        <label for="exampleInput" class="form-label"
+        <label for="returnDate" class="form-label"
           ><h5>Kiralama bitişi için tarih giriniz</h5></label
         >
         <input
           [(ngModel)]="sonTarih"
           type="date"
           class="form-control"
-          id="exampleInput"
-          name="input"
+          id="returnDate"
+          name="returnDate"
           ng-model="example.value"
           placeholder="yyyy-MM-dd"
           min="{{ ilkTarih }}"
@@ -44,57 +47,72 @@
   <div class="modal-content">
     <span class="modal-close" (click)="modalClose()">&times;</span>
     
-    <h1>{{ tutar | currency: "tr " }}</h1>
-    {{ rastgele }}
+    <h1>{{ tutar | currency: "tr " }} </h1>
+    <!-- {{name.pristine}} -->
+    <!-- {{kart |json}}
+    {{ rastgele }} -->
 
-    <form  #forumum="ngForm" class="credit-card-form row">
+    <form  novalidate>
      
       <div class="row gy-3">
         <div class="col-md-6">
-          <label for="name" class="form-label">Name on card</label>
+          <label for="carHolderNane" class="form-label">Name on card</label>
           <input
-            name="name"
             type="text"
+            [(ngModel)]="kart.cardHolderName"
+            #name="ngModel"
             class="form-control"
-            id="name"
-            placeholder=""
-          />
+            name="cartHolderName"
+            id="cartHolderName"
+            value="Mark"
+            required>
+          <div class="valid feedback">
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+          </div>
         </div>
 
         <div class="col-md-6">
           <label for="creditCard" class="form-label">Credit card number</label>
           <input
-            name="creditCard"
+            [(ngModel)]="kart.cardNumber"
+            #cardNumber="ngModel"
+            name="kart.cardNumber"
             type="text"
+            [class.is-invalid]="cardNumber.invalid"
             mask="0000 0000 0000 0000"
-            [(ngModel)]="creditCard"
-            class="form-control"
+            class="form-control is-invalid"
             id="creditCard"
             placeholder=""
           />
+          <div class="valid feedback">
+            <small class="text-danger" [class.d-none]="cardNumber.valid || name.untouched">card number is required</small>
+          </div>
         </div>
 
-        <div class="col-md-3">
-          <label for="cc-expiration" class="form-label">Expiration</label>
+        <div class="col-md-4">
+          <label for="validationDate" class="form-label">Expiration</label>
           <input
-          
+            [(ngModel)]="kart.validationDate"       
+            #validationDate="ngModel"
+            name="kart.validationDate"
             type="date"
-            class="form-control"
-            id="cc-expiration"
-            placeholder=""
+            class="form-control is-invalid"
+            id="validationDate"
             min="{{ minDate }}"
             required
           />
         </div>
 
-        <div class="col-md-3">
-          <label for="cc-cvv" class="form-label">CVV</label>
+        <div class="col-md-2">
+          <label for="cvv" class="form-label">CVV</label>
           <input
+            [(ngModel)]="kart.cvv"
+            #cvv="ngModel"
+            name="kart.cvv"
             type="text"
             mask="000"
-            class="form-control"
-            id="cc-cvv"
-            placeholder=""
+            class="form-control is-invalid"
+            id="cvv"
             required
           />
         </div>

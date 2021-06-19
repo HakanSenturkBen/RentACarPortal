@@ -25,6 +25,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarRentalComponent } from './components/car-rental/car-rental.component';
 import { CardMaskPipe } from './pipes/card-mask.pipe';
 import { ToastrModule } from 'ngx-toastr';
+import { DataProcessorComponent } from './components/data-processor/data-processor.component';
+import { CarDataComponent } from './components/car-data/car-data.component';
+import { MapsComponent } from './components/maps/maps.component';
+import { DialogBoxingComponent } from './components/dialog-boxing/dialog-boxing.component';
+import { AddCarComponent } from './components/add-car/add-car.component';
+import { AddBrandComponent } from './components/add-brand/add-brand.component';
+import { AddColorComponent } from './components/add-color/add-color.component';
+import { AddImageComponent } from './components/add-image/add-image.component';
+import { ColorDataComponent } from './components/color-data/color-data.component';
+import { BrandDataComponent } from './components/brand-data/brand-data.component';
 
 
 
@@ -43,7 +53,17 @@ import { ToastrModule } from 'ngx-toastr';
     WaitingComponent,
     NavbarComponent,
     CarRentalComponent,
-    CardMaskPipe
+    CardMaskPipe,
+    DataProcessorComponent,
+    CarDataComponent,
+    MapsComponent,
+    DialogBoxingComponent,
+    AddCarComponent,
+    AddBrandComponent,
+    AddColorComponent,
+    AddImageComponent,
+    ColorDataComponent,
+    BrandDataComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,58 @@
+<div class="modal">
+    <div class="modal-content">
+        <div class="content">
+          <div class="card">
+            <div class="container-fluid">
+              <div class="card-header card-header-success">
+                <h4 class="card-title">Kaydı Düzenle</h4>
+                
+              </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-profile card-avatar text-center">
+                                    <div class="card-body">
+                                        <form #carForm="ngForm">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <label class="bmd-label-floating">Araç Adı</label>
+                                              <input
+                                                [(ngModel)]="brand.brandName"
+                                                #dailyPrice="ngModel"
+                                                name="brand.brandName"
+                                                type="text"
+                                                class="form-control"
+                                                required>
+                                            </div>
+                                          </div>
+                                         
+                                        </form>
+                                      </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <div class="container-fluid">
+                                    
+                                      <button (click)="update()" class="card-header card-header-warning" style="padding: 10px;">
+                                        <span class=" card-category"><i class="material-icons">update</i>Güncelle</span>
+                                      </button>
+        
+                                      <button (click)="delete()" class="card-header card-header-danger" style="padding: 10px;">
+                                        <span class="card-category"><i class="material-icons">delete</i></span>Sil
+                                      </button>
+        
+                                      <button (click)="modalClose()" class="card-header card-header-info" style="padding: 10px;">
+                                        <span class=" card-category"><i class="material-icons">logout</i></span>Geri
+                                      </button>
+        
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

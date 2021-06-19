@@ -1,0 +1,27 @@
+<div class="modal">
+    <div class="modal-content">
+        <div class="content">
+            <div class="form-floating">
+
+                <input class="form-control" 
+                       placeholder="Leave a comment here" 
+                       id="floatingTextarea2"
+                       [(ngModel)]="color.colorName"
+                       name="color.colorName"
+                       minlength="2"
+                       maxlength="50"
+                       required
+                    style="height: 50px">
+                <label for="floatingTextarea2">Renk Adı</label>
+
+                <button (click)="onChange(false)" class="card-header rightsuccess">
+                    <span class="card-category "><i class="material-icons text-center">cancel</i>vazgeç</span>
+                </button>
+
+                <button (click)="save(false)" class="card-header rightprimary">
+                    <span class="card-category "><i class="material-icons text-center">save</i>Kayıt</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

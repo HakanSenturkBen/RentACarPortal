@@ -14,6 +14,14 @@ export class ToolsService {
     this.router.navigate([path]);
   }
 
+  refreshPage(){
+    window.location.reload();
+  }
+
+  directionPage(page:string){
+    window.location.assign(page);
+  }
+
   toastInfo(message:string,position:string){
     this.toast.info(message," ",{positionClass:"toast-"+position});
   }
