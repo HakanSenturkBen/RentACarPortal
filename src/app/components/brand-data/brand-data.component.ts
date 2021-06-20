@@ -19,7 +19,9 @@ export class BrandDataComponent implements OnInit {
 
   update(){
     this.brandService.updateBrand(this.brand).subscribe(res=>{
-      this.tools.toastSuccess(res.message.toString(),"center-center")
+      this.tools.toastSuccess(res.message.toString(),"center-center");
+    },error=>{
+      this.tools.toastSuccess(error.error.message,"center-center");
     });
 
   }
@@ -27,7 +29,9 @@ export class BrandDataComponent implements OnInit {
   delete(){
     this.brandService.delBrand(this.brand).subscribe(res=>{
       this.tools.toastSuccess(res.message.toString(),"center-center")
-    })
+    },error=>{
+      this.tools.toastSuccess(error.error.message,"center-center");
+    });
 
   }
 

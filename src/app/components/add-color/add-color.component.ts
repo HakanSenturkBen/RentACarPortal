@@ -23,6 +23,11 @@ export class AddColorComponent implements OnInit {
       this.tools.toastInfo(res.message.toString(),"bottom-right");
     },error=>{
       this.tools.toastInfo(error.error.message,"bottom-right");
+      for (var hata of error.error.Errors) {
+        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
+         }
+      
+      
     })
     this.onChange(value);
   }

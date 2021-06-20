@@ -44,6 +44,7 @@ export class CarDetailComponent implements OnInit {
       this.xRes=this.carModel.brandName;
       let splitted=this.xRes.split(" ",1)
       this.xRes=splitted[0];
+      this.dataLoaded=false;
     });
   }
 
@@ -59,13 +60,15 @@ export class CarDetailComponent implements OnInit {
         this.tools.toastInfo("kiralama için uygun lütfen tarih seçiniz","top-center")
         let carId=id
         this.tools.reDirection("carrental/"+carId)
-        this.dataLoaded=true;
+      
       }
-    },error=>{console.log(error)
-      this.tools.toastInfo(error.error.message.toString(),"top-center")})
+    },error=>{
+      this.tools.toastInfo(error.error.message,"top-center")
+    });
+      
       this.dataLoaded=true;
   }  
-
+  
   getPaths(id:number){
     
     this.carImage.getCarImagePaths(id).subscribe(response=>{

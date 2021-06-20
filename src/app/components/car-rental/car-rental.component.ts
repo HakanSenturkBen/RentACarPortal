@@ -86,7 +86,7 @@ export class CarRentalComponent implements OnInit {
   payAndFinish(){
     
     
-    this.paymentService.getCardInfo(this.creditCard).subscribe(res=>{
+    this.paymentService.getCardInfo(this.kart.cardNumber).subscribe(res=>{
       this.kart=res.data;
 
       if(this.kart.limit<this.tutar){
@@ -122,7 +122,7 @@ export class CarRentalComponent implements OnInit {
           RentalId: message,
           AccountName: "hakan şentürk",
           AccountNumber: "12979166",
-          CreditCardNumber: this.creditCard,
+          CreditCardNumber: this.kart.cardNumber,
           TransactionAmount: this.tutar};
           this.paymentService.addPayment(payment).subscribe(response=>{
             alert("ödeme kaydedildi");

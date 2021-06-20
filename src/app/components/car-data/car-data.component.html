@@ -38,9 +38,10 @@
                 <h4 class="card-title">Kaydı Düzenle</h4>
                 
               </div>
+              <div class="card">
               <div class="card-body">
                 <form #carForm="ngForm">
-                  <div class="row">
+                  <div class="row ">
                     <div class="col-md-5">
                       <label class="bmd-label-floating">Araç adı </label>
                       <select
@@ -128,36 +129,41 @@
                       <div class="form-group">
                         <label>About car</label>
                         <div class="form-group bmd-form-group">
-                          <textarea class="form-control" rows="5"
-                            >{{ carDetail.description | json }}.</textarea
-                          >
+                          <input class="form-control"
+                                 [(ngModel)]="carDetail.description" 
+                                 #description="ngModel"
+                                 name="carDetail.description"
+                                 type=text
+                                 row="5">
                         </div>
-                        <div class="container-fluid">
-                          <div class="row">
-                            <div class="col col-12">
-                              <button (click)="save()" class="card-header card-header-success">
-                                <span class="card-category "><i class="material-icons text-center">save</i>Kayıt</span>
-                              </button>
-
-                              <button (click)="update()" class="card-header card-header-warning" style="padding: 10px;">
-                                <span class=" card-category"><i class="material-icons">update</i>Güncelle</span>
-                              </button>
-
-                              <button (click)="delete()" class="card-header card-header-danger" style="padding: 10px;">
-                                <span class="card-category"><i class="material-icons">delete</i></span>Sil
-                              </button>
-
-                              <button (click)="modalClose()" class="card-header card-header-info" style="padding: 10px;">
-                                <span class=" card-category"><i class="material-icons">logout</i></span>Geri
-                              </button>
-
-                            </div>
-                          </div>
-                        </div>
+                        
+                        
                       </div>
                     </div>
                   </div>
                 </form>
+              </div>
+            </div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col col-12">
+                  <button (click)="save()" class="card-header card-header-success">
+                    <span class="card-category "><i class="material-icons text-center">save</i>Kayıt</span>
+                  </button>
+
+                  <button (click)="update()" class="card-header card-header-warning" style="padding: 10px;">
+                    <span class=" card-category"><i class="material-icons">update</i>Güncelle</span>
+                  </button>
+
+                  <button (click)="delete()" class="card-header card-header-danger" style="padding: 10px;">
+                    <span class="card-category"><i class="material-icons">delete</i></span>Sil
+                  </button>
+
+                  <button (click)="modalClose()" class="card-header card-header-info" style="padding: 10px;">
+                    <span class=" card-category"><i class="material-icons">logout</i></span>Geri
+                  </button>
+
+                </div>
               </div>
             </div>
           </div>

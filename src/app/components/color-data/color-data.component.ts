@@ -21,12 +21,16 @@ export class ColorDataComponent implements OnInit {
   update(){
     this.colorService.updateColor(this.color).subscribe(res=>{
       this.tools.toastSuccess(res.message.toString(),"center-center");
+    },error=>{
+      this.tools.toastSuccess(error.error.message.toString(),"center-center");
     });
   }
 
   delete(){
     this.colorService.delColor(this.color).subscribe(res=>{
-      this.tools.toastSuccess(res.message.toString(),"center-center")
+      this.tools.toastSuccess(res.message.toString(),"center-center");
+    },error=>{
+      this.tools.toastSuccess(error.error.message,"center-center");
     })
 
   }
