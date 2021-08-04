@@ -35,6 +35,14 @@ import { AddColorComponent } from './components/add-color/add-color.component';
 import { AddImageComponent } from './components/add-image/add-image.component';
 import { ColorDataComponent } from './components/color-data/color-data.component';
 import { BrandDataComponent } from './components/brand-data/brand-data.component';
+import { FindeksComponent } from './components/findeks/findeks.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { MembershipComponent } from './components/membership/membership.component';
+import { InceptionComponent } from './components/inception/inception.component';
+import { RentalDirective } from './directive/rental.directive';
+
+
 
 
 
@@ -63,7 +71,14 @@ import { BrandDataComponent } from './components/brand-data/brand-data.component
     AddColorComponent,
     AddImageComponent,
     ColorDataComponent,
-    BrandDataComponent
+    BrandDataComponent,
+    FindeksComponent,
+    RegisterComponent,
+    LoginComponent,
+    MembershipComponent,
+    InceptionComponent,
+    RentalDirective
+
   ],
   imports: [
     BrowserModule,

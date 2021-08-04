@@ -30,9 +30,10 @@ button {
 .modal-content {
   background-color: #fff;
   width: 60%;
-  max-height: 75%;
+  max-width: 100%;
+  max-height: 100%;
   margin: 2rem;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.25rem;
   box-shadow: 0 4px 20 px rgba(0, 0, 0, 0.8);
   overflow: auto;
@@ -90,18 +91,17 @@ button {
   float: left;
 }
 
-button
- {
+button {
   height: 40px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: black;
-  background-color:#4de6ff;
+  background-color: #4de6ff;
   text-align: left;
   font-size: 16px;
   cursor: pointer;
   position: relative;
   border-radius: 4rem;
-  box-shadow:   4px 0px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.2);
   border: 0;
 }
 

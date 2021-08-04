@@ -1,0 +1,92 @@
+<div class="modal">
+    <div class="modal-content" >
+        <small class="text-center">Findeks puanınızın hesaplanması araç kiralama işleminizle alakalı kredibilitenizi artırmak noktasında size fayda sağlar.</small>
+        
+        <form  [formGroup]="modalGroup" >
+            
+             
+                <button (click)="closeFindexWindow(false)"  type="button" class="rightwarning" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+                  </svg></button>
+
+                  <h5>Findeks Puanlama Kriterleri </h5>
+            
+            <div class="row g-4">
+                <div class="col-sm-4">
+                    <label for="not1" class="form-label">kredilerininizin %50 den fazlası ödendi</label>
+                    <select class="form-select" id="not1" formControlName="not1" required>
+                        <option selected>Evet/Hayır</option>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="not2" class="form-label">Üç kereden fazla gecikmeli ödeme yok</label>
+                    <select formControlName="not2" class="form-select" id="not2" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="not3" class="form-label">Kredi kullanımı yılda 2 kereden az</label>
+                    <select formControlName="not3" class="form-select" id="not3" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="not4" class="form-label">Son üç ay içerisinde kredi kullanılmadı</label>
+                    <select formControlName="not4" class="form-select" id="not4" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="not5" class="form-label">Son beş yılda iş değişikliği yok</label>
+                    <select formControlName="not5" class="form-select" id="not5" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="not6" class="form-label">Aylık ödeme aylık gelirin %50 sinden
+                        az</label>
+                    <select formControlName="not6" class="form-select" id="not6" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="not7" class="form-label">Kendinize ait bir mülkte oturuyorsunuz</label>
+                    <select formControlName="not7" class="form-select" id="not7" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="not8" class="form-label">Diğer aile bireyleri çalışıyor</label>
+                    <select formControlName="not8" class="form-select" id="not8" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="not9" class="form-label">Mezuniyet durumunuz lisans veya
+                        lisansüstü</label>
+                    <select formControlName="not9" class="form-select" id="not9" required>
+                        <option>Evet</option>
+                        <option>Hayır</option>
+                    </select>
+                    <button (click)="findeksPointing(false)" type="submit" class="btn btn-primary">Calculate</button>
+                </div>
+            </div>
+            <div class="col 5">
+                <label for="message-text" class="col-form-label">Lütfen Dikkat :</label>
+                <textarea class="form-control" id="message-text"> Beyanlarınınızın doğruluk derecesi findeks puanınızı etkiler. Burada beyan edeceğiniz bilgiler BBDK ile irtibatlanarak teyid edilecektir. </textarea>
+            </div>
+        </form>
+    </div>
+</div>

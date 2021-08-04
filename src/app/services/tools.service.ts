@@ -33,4 +33,25 @@ export class ToolsService {
     this.toast.success(message," ",{positionClass:"toast-"+position});
   }
 
+  toastError(message:string,position:string){
+    this.toast.error(message," ",{positionClass:"toast-"+position});
+  }
+
+  lsGet(name:string){
+    localStorage.getItem(name);
+  }
+
+  lsSet(name:string, data:string){
+    localStorage.setItem(name,data);
+  }
+
+  lsDel(name:string){
+    localStorage.removeItem(name);
+  }
+
+  lsClear(){
+    localStorage.clear();
+  }
+
+
 }

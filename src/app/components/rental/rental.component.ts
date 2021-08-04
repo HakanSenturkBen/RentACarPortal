@@ -10,27 +10,27 @@ import { RentalModel } from './rentalModel';
 })
 export class RentalComponent implements OnInit {
 
-  dataLoaded=false;
-  filterText="";
-  rentals:RentalModel[]=[];
-  rentalsDto:RentalDto[]=[];
-  constructor(private rentalService:RentalService) { }
+  dataLoaded = false;
+  filterText = "";
+  rentals: RentalModel[] = [];
+  rentalsDto: RentalDto[] = [];
+  constructor(private rentalService: RentalService) { }
 
   ngOnInit(): void {
     this.getRentals();
-    this.  getRentaldDto();
-    this.dataLoaded=true;
+    this.getRentaldDto();
+    this.dataLoaded = true;
   }
-  
-  getRentals(){
-    this.rentalService.getRentals().subscribe(response=>{
-      this.rentals=response.data;
+
+  getRentals() {
+    this.rentalService.getRentals().subscribe(response => {
+      this.rentals = response.data;
     });
   }
 
-  getRentaldDto(){
-    this.rentalService.getRentalsDto().subscribe(response=>{
-      this.rentalsDto=response.data;
+  getRentaldDto() {
+    this.rentalService.getRentalsDto().subscribe(response => {
+      this.rentalsDto = response.data;
     });
   }
 }

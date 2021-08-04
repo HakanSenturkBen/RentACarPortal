@@ -1,3 +1,4 @@
+import { ToolsService } from './../../services/tools.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,11 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  childEvent:any;
+  constructor( private tools:ToolsService) { }
 
-  
+  logining:string="0";
 
   ngOnInit(): void {
+    this.logining=localStorage.getItem("member");
+    if (this.logining===null) {this.logining="0";
+      
+    }
+  }
+
+  log()
+  {
+    this.logining="1";
+  }
+
+  olay(olay:string){
+    this.logining=olay
+    
+  }
+
+  logOut(){
+    localStorage.removeItem("member")
+    this.tools.refreshPage();
   }
 
   

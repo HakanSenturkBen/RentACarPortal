@@ -1,5 +1,5 @@
 input{
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -8,7 +8,7 @@ body{
     height: 200vh;
 }
 button{
-    margin: 0.75rem;
+   
     padding: .25rem;
     cursor:pointer;
 }
@@ -21,7 +21,7 @@ button{
     justify-content: center;
     align-items: flex-start;
     z-index: 1000   ;
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     background-color:rgba(0, 0, 0, 0.5) ;
     
@@ -31,12 +31,14 @@ button{
     background-color: #fff;
     color:black;
     width: 60%;
-    max-height: 60%;
+    max-width: 100%;
+    max-height: 100%;
     margin: 2rem;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 20 px rgba(0, 0, 0, 0.8);
     overflow: auto;
+    
 }
 
 .modal-content h1 h4 h6{
@@ -77,6 +79,6 @@ button{
     html{
         font-size: 12px;
     }
-    .modal-content{padding: 2rem 1rem 1rem 1rem;}
-    .modal-content h1{margin-bottom: 1.5rem;}
+    
+    
 }

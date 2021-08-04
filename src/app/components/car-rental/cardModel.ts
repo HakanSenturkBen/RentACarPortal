@@ -1,9 +1,9 @@
 export interface CreditCard {
 
     id: number,
+    customerId:number,
     cardNumber: string,
-    dateofIssue: Date,
-    validationDate: Date,
+    validationDate: string,
     cvv: string,
     limit: number,
     cardHolderName: string

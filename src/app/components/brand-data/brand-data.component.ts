@@ -21,7 +21,10 @@ export class BrandDataComponent implements OnInit {
     this.brandService.updateBrand(this.brand).subscribe(res=>{
       this.tools.toastSuccess(res.message.toString(),"center-center");
     },error=>{
-      this.tools.toastSuccess(error.error.message,"center-center");
+      this.tools.toastInfo(error.error.message,"bottom-right");
+      for (var hata of error.error.Errors) {
+        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
+         }
     });
 
   }
@@ -30,9 +33,11 @@ export class BrandDataComponent implements OnInit {
     this.brandService.delBrand(this.brand).subscribe(res=>{
       this.tools.toastSuccess(res.message.toString(),"center-center")
     },error=>{
-      this.tools.toastSuccess(error.error.message,"center-center");
+      this.tools.toastInfo(error.error.message,"bottom-right");
+      for (var hata of error.error.Errors) {
+        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
+         }
     });
-
   }
 
   modalClose(){

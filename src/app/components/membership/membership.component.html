@@ -1,0 +1,633 @@
+<body class="bg-light">
+
+    <!-- HEADER -->
+    <header class=" pt-9 pb-12 d-none d-md-block ">
+        <div class="container-md">
+            <div class="row align-items-center fixed-top bg-dark">
+                <div class="col-1 ">
+                    <button routerLink="/cars" class="btn btn-sm btn-gray-300-20">
+                        <i class="material-icons">logout</i>
+                    </button>
+                </div>
+                <div class="col">
+                    <h1 class="fw-bold text-white"> Üyelik İşlemleri </h1>
+                </div>
+                <div class="progress progress-line-primary ">
+                    <div *ngIf="progressbar==25" class="progress-bar progress-bar-success" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                    <div *ngIf="progressbar==50" class="progress-bar progress-bar-success" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+                    <div *ngIf="progressbar==75" class="progress-bar progress-bar-success" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                    <div *ngIf="progressbar==100" class="progress-bar progress-bar-success" role="progressbar"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <br>
+    <br>
+
+
+    <!-- MAIN -->
+    <main class="pb-8 pb-md-11 mt-md-n6">
+        <div class="container-md">
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <!-- Card -->
+                        <div class="card card-bleed border-bottom border-bottom-md-0 shadow-light-lg">
+                                <div class="card-body">
+                                    <!-- Heading -->
+                                    <h6 class="fw-bold text-uppercase mb-3">
+                                        Hesap İşlemleri
+                                    </h6>
+                                    <!-- List -->
+                                    <ul class="col-md-12 col-sm-12">
+                                                <li (click)="current(0)" [class]=menu[0]><span class="badge bg-secondary"><i class="material-icons">home</i></span> GENEL</li>
+                                                <li (click)="current(1)" [class]=menu[1]><span class="badge bg-secondary"><i class="material-icons">account_circle</i></span> Kişi bilgileri</li>
+                                                            <div class="collapse d-md-block" id="sidenavCollapse">  <!-- Collapse -->
+                                                                            <li (click)="current(2)" [class]=menu[2]><span class="badge bg-secondary"><i class="material-icons">info</i></span> Şirket Bilgileri</li>
+                                                                            <li (click)="current(3)" [class]=menu[3]><span class="badge bg-secondary"><i class="material-icons">room</i></span> Adres Bilgileri</li>
+                                                                            <li (click)="current(4)" [class]=menu[4]><span class="badge bg-secondary"><i class="material-icons">chrome_reader_mode</i></span> Kart Bilgileri</li>
+                                                            </div>
+                                    </ul>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-md-9 col-sm-9">
+                    <!-- Card -->
+                    <div class="card card-bleed shadow-light-lg">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col ">
+                                    <!-- Heading -->
+                                    <h4 class="mb-0 ">
+                                        Üye Kayıt Bilgileri
+                                    </h4>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- List group -->
+                            <div class="list-group list-group-flush ">
+                                <!-- user -->
+                                <div *ngIf="progressbar==0||progressbar==100" class="list-group-item success">
+
+                                    <Form action="" [formGroup]="userForm">
+                                            <div class="row align-items-center">
+                                                    <h4 class="mb-0 "> Kullanıcı bilgileri </h4>
+                                                    <div class="col-md-6 col-sm-9">
+                                                            <div class="form-group" [ngClass]="{'has-error' :  userForm.get('firstName').errors && (userForm.get('firstName').touched) || (userForm.get('firstName').dirty)}">
+                                                                    <div class="form-floating">
+                                                                            <input type="text" 
+                                                                                        class="form-control"
+                                                                                        formControlName="firstName" 
+                                                                                        id="firstName"
+                                                                                        placeholder="Leave a comment here" 
+                                                                                        minlength="3" 
+                                                                                        required>
+                                                                            <label for="firstName">Adınız</label>
+                                                                            <span class="help-block" *ngIf="userForm.get('firstName').errors">
+                                                                                    <small>lütfen en az üç harf uzunuluğunda ve geçerli bir ad giriniz</small>
+                                                                            </span>
+                                                                    </div>
+                                                        </div>
+                                                </div>
+
+                                            <div class="col-md-6 col-sm-9">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  userForm.get('lastName').errors && (userForm.get('lastName').touched) || (userForm.get('lastName').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control"
+                                                                                placeholder="Leave a comment here"
+                                                                                formControlName="lastName" 
+                                                                                id="lastName" 
+                                                                                minlength="3"
+                                                                                type="text" 
+                                                                                required>
+                                                                    <label for="lastName">Soyadınız</label>
+                                                                    <span class="help-block" *ngIf="userForm.get('lastName').errors">
+                                                                                <small>lütfen en az üç harf uzunuluğunda ve geçerli bir soyad giriniz</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  userForm.get('phoneNumber').errors && (userForm.get('phoneNumber').touched) || (userForm.get('phoneNumber').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                formControlName="phoneNumber"
+                                                                                required type="text" 
+                                                                                placeholder="Leave a comment here"
+                                                                                mask="000 000 0000"
+                                                                                minlength="10" 
+                                                                                id="phoneNumber">
+                                                                            <label for="phoneNumber">Telefon numarası</label>
+                                                                    <span class="help-block" *ngIf="userForm.get('phoneNumber').errors">
+                                                                        <small>lütfen alan kodu ile birlikte 10 haneli telefon numaranızı giriniz</small>
+                                                                    </span>
+                                                                </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  userForm.get('email').errors && (userForm.get('email').touched) || (userForm.get('email').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                formControlName="email" 
+                                                                                required
+                                                                                type="email" 
+                                                                                email 
+                                                                                placeholder="Leave a comment here"
+                                                                                [class.is-invalid]="email.invalid"
+                                                                                [class.is-valid]="email.valid" 
+                                                                                id="email">
+                                                                    <label for="email">E-mail Adresiniz</label>
+                                                                    <span class="help-block" *ngIf="userForm.get('email').errors">
+                                                                        <small>lütfen geçerli bir email hesabı giriniz</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  userForm.get('password').errors && (userForm.get('password').touched) || (userForm.get('password').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                placeholder="Leave a comment here"
+                                                                                formControlName="password" 
+                                                                                id="password" 
+                                                                                type="password"
+                                                                                minlength="8" 
+                                                                                required>
+                                                                    <label for="password">Parola</label>
+                                                                    <span class="help-block" *ngIf="userForm.get('password').errors">
+                                                                        <small>lütfen parolanızı en az 8 karakter olacak şekilde belirleyiniz</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  userForm.get('passwordAgain').errors && (userForm.get('passwordAgain').touched) || (userForm.get('passwordAgain').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                placeholder="Leave a comment here"
+                                                                                formControlName="passwordAgain" 
+                                                                                id="password"
+                                                                                type="password" 
+                                                                                minlength="8" 
+                                                                                (change)="checkPassword()"
+                                                                                required>
+                                                                    <label for="password">Parola tekrar</label>
+                                                                    <span class="help-block" *ngIf="userForm.get('passwordAgain').errors">
+                                                                        <small>lütfen parolanızı en az 8 karakter olacak şekilde belirleyiniz</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  userForm.get('citizenShipNumber').errors && (userForm.get('citizenShipNumber').touched) || (userForm.get('citizenShipNumber').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                placeholder="Leave a comment here"
+                                                                                formControlName="citizenShipNumber" 
+                                                                                id="TcNo" 
+                                                                                type="text"
+                                                                                minlength="11" 
+                                                                                mask="000 000 000 00"
+                                                                                required>
+                                                                    <label for="TcNo">Tc Kimlik No</label>
+                                                                    <span class="help-block" *ngIf="userForm.get('citizenShipNumber').errors">
+                                                                        <small>lütfen lütfen 11 haneli ve geçerli bir Tc kimlik no giriniz</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                        </div><!-- end of user card -->
+
+                                        <button [disabled]="userForm.invalid" type="submit" class="rightinfo" (click)="checkButton(2)">Güncelle</button>
+                                        <div *ngIf="userForm.invalid" class="pull-right">
+                                                <h4 class="text-danger">*<small>lütfen bütün alanları eksiksiz doldurunuz</small></h4>
+                                        </div>
+                                    </Form>
+
+                                </div>
+
+                                <!-- company -->
+                                <div *ngIf="progressbar==25||progressbar==100" class="list-group-item baslik ">
+                                    <Form [formGroup]="companyForm">
+                                        <div class="row align-items-center">
+                                                <h4 class="mb-0 "> Şirket Bilgileri </h4>
+                                                <div class="col-md-6 col-sm-6">
+                                                <div class="avatar avatar-xl">
+                                                        <div class="form-group" [ngClass]="{'has-error' :  companyForm.get('companyName').errors && (companyForm.get('companyName').touched) || (companyForm.get('companyName').dirty)}">
+                                                                <div class="form-floating">
+                                                                        <input class="form-control" 
+                                                                                    placeholder="Leave a comment here"
+                                                                                    formControlName="companyName" 
+                                                                                    id="companyName" 
+                                                                                    type="text"
+                                                                                    minlength="5" 
+                                                                                    required>
+                                                                        <label for="companyName">Şirket Adı</label>
+                                                                        <span class="help-block" *ngIf="companyForm.get('companyName').errors">
+                                                                                   <small>lütfen geçerli bir şirket adı giriniz</small>
+                                                                        </span>
+                                                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  companyForm.get('coPhoneNumber').errors && (companyForm.get('coPhoneNumber').touched) || (companyForm.get('coPhoneNumber').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                placeholder="Leave a comment here"
+                                                                                formControlName="coPhoneNumber" 
+                                                                                id="coPhoneNo" 
+                                                                                type="text"
+                                                                                minlength="10" 
+                                                                                required>
+                                                                    <label for="coPhoneNo">Şirket Telefon Numarası</label>
+                                                                    <span class="help-block" *ngIf="companyForm.get('coPhoneNumber').errors">
+                                                                                <small>lütfen geçerli bir telefon numarası giriniz</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  companyForm.get('taxNumber').errors && (companyForm.get('taxNumber').touched) || (companyForm.get('taxNumber').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                placeholder="Leave a comment here"
+                                                                                minlength="10" 
+                                                                                maxlength="10" 
+                                                                                formControlName="taxNumber"
+                                                                                id="taxNo" 
+                                                                                type="text" 
+                                                                                required>
+                                                                    <label for="taxNo">Vergi Numarası</label>
+                                                                    <span class="help-block" *ngIf="companyForm.get('taxNumber').errors">
+                                                                               <small>Geçersiz vergi no (Vergi no 10 haneli sayılardan oluşur)</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group" [ngClass]="{'has-error' :  companyForm.get('taxOfficeName').errors && (companyForm.get('taxOfficeName').touched) || (companyForm.get('taxOfficeName').dirty)}">
+                                                            <div class="form-floating">
+                                                                    <input class="form-control" 
+                                                                                placeholder="Leave a comment here"
+                                                                                formControlName="taxOfficeName" 
+                                                                                id="taxName" 
+                                                                                type="text"
+                                                                                minlength="10" 
+                                                                                required>
+                                                                    <label for="taxName">Vergi Dairesi</label>
+                                                                    <span class="help-block" *ngIf="companyForm.get('taxOfficeName').errors">
+                                                                               <small>Vergi dairesi adı geçersiz</small>
+                                                                    </span>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
+                                        </div>  <!-- end of company card -->
+
+                                        <button [disabled]="companyForm.invalid" type="submit" class="pull-right"
+                                            (click)="checkButton(3)">Güncelle</button>
+                                        <div *ngIf="companyForm.invalid" class="pull-right">
+                                                <h4 class="text-danger">*<small>lütfen bütün alanları eksiksiz doldurunuz</small></h4>
+                                        </div>
+
+                                    </Form>
+                                </div>
+
+                                <!-- address -->
+
+                                <div *ngIf="progressbar==50||progressbar==100" class="list-group-item infos ">
+                                    <Form [formGroup]="addressForm">
+                                        <div class="row align-items-center">
+                                            <h4 class="mb-0 "> Adres Bilgileri </h4>
+                                            <div class="avatar avatar-xl">
+                                                <div class="form-group"
+                                                    [ngClass]="{'has-error' :  addressForm.get('address1').errors && (addressForm.get('address1').touched) || (addressForm.get('address1').dirty)}">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" placeholder="Leave a comment here"
+                                                            formControlName="address1" id="address1" type="text"
+                                                            required>
+                                                        <label for="address1">Adres1 (Sokak, Bina)</label>
+                                                        <span class="help-block"
+                                                            *ngIf="addressForm.get('address1').errors">
+                                                            <small>Geçersiz adres</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group"
+                                                    [ngClass]="{'has-error' :  addressForm.get('address2').errors && (addressForm.get('address2').touched) || (addressForm.get('address2').dirty)}">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" placeholder="Leave a comment here"
+                                                            formControlName="address2" id="address2" type="text"
+                                                            required>
+                                                        <label for="address2">Addres2</label>
+                                                        <span class="help-block"
+                                                            *ngIf="addressForm.get('address2').errors">
+                                                            <small>Geçersiz adres</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group"
+                                                    [ngClass]="{'has-error' :  addressForm.get('city').errors && (addressForm.get('city').touched) || (addressForm.get('city').dirty)}">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" placeholder="Leave a comment here"
+                                                            minlength="10" formControlName="city" id="city" type="text"
+                                                            required>
+                                                        <label for="city">İlçe</label>
+                                                        <span class="help-block" *ngIf="addressForm.get('city').errors">
+                                                            <small>İlçe adı geçersiz</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group"
+                                                    [ngClass]="{'has-error' :  addressForm.get('state').errors && (addressForm.get('state').touched) || (addressForm.get('state').dirty)}">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" placeholder="Leave a comment here"
+                                                            formControlName="state" id="state" type="text" required>
+                                                        <label for="state">İl</label>
+                                                        <span class="help-block"
+                                                            *ngIf="addressForm.get('state').errors">
+                                                            <small>Şehir adı geçersiz</small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end of address card -->
+                                        <button [disabled]="addressForm.invalid" type="submit" class="rightsuccess" (click)="checkButton(4)">Güncelle</button>
+                                        
+                                            <div *ngIf="addressForm.invalid" class="pull-right">
+                                                    <h4 class="text-danger">*<small>lütfen bütün alanları eksiksiz doldurunuz</small></h4>
+                                            </div>
+                                    </Form>
+                                </div>
+
+                                <!-- credit card -->
+                                <div *ngIf="progressbar==75||progressbar==100" class="list-group-item success ">
+                                    <Form [formGroup]="cardForm " class="needs-validation" novalidate>
+
+                                        <div class="row align-items-center has-validation">
+                                            <h4 class="mb-0 "> Kart Bilgileri </h4>
+                                            <div>
+                                                <div class="col-md-6 col-sm-6">
+                                                        <div class="form-floating">
+                                                                <input class="form-control"
+                                                                    placeholder="Kart Üzerinde yazılı olduğu gibi"
+                                                                    formControlName="cardHolderName" id="cardHolderName"
+                                                                    [class.is-invalid]="cardHolderName.invalid"
+                                                                    [class.is-valid]="cardHolderName.valid" type="text"
+                                                                    minlength="6"
+                                                                    required>
+                                                                <label for="cardHolderName">Adınız</label>
+                                                                <small *ngIf="cardHolderName.invalid && cardHolderName.touched">Lütfen
+                                                                    Kart üzerinde yazılı adınızı aynen yazınız</small>
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-floating">
+                                                    <input class="form-control" 
+                                                                placeholder="Leave a comment here"
+                                                                minlength="16" 
+                                                                formControlName="cardNumber" 
+                                                                id="cardNumber"
+                                                                mask="0000 0000 0000 0000"
+                                                                [class.is-invalid]="cardNumber.invalid"
+                                                                [class.is-valid]="cardNumber.valid" 
+                                                                type="text" 
+                                                                required>
+                                                    <small *ngIf="cardNumber.invalid && cardNumber.touched">Lütfen geçerli bir kart numarasını 16 hane giriniz</small>
+                                                    <label for="cardNumber">Kart Numarası</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-floating">
+                                                    <input class="form-control" 
+                                                                placeholder="Leave a comment here"
+                                                                minlength="3"
+                                                                formControlName="ccv" 
+                                                                id="ccv" 
+                                                                [class.is-invalid]="ccv.invalid"
+                                                                [class.is-valid]="ccv.valid" 
+                                                                type="text" 
+                                                                required>
+                                                    <label for="ccv">ccv</label>
+                                                    <small *ngIf="ccv.invalid && ccv.touched">Lütfen kartınızın arkasındaki 3 haneli güvenlik kodunu giriniz</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-floating">
+                                                    <input class="form-control" 
+                                                                placeholder="Leave a comment here"
+                                                                formControlName="validationDate" 
+                                                                id="validationDate" 
+                                                                minlength="4"
+                                                                [class.is-invalid]="validationDate.invalid"
+                                                                [class.is-valid]="validationDate.valid" 
+                                                                type="text"
+                                                                required>
+                                                    <label for="validationDate">son kullanma tarihi</label>
+                                                    <small *ngIf="validationDate.invalid && validationDate.touched">Kartınızınız üzerindeki son kullanma tarihini giriniz</small>
+                                                </div>
+                                            </div>
+
+                                        </div> <!-- end of cardForm-->
+                                        <button [disabled]="cardForm.invalid" type="submit" class="rightwarning" (click)="checkButton(0)">Güncelle</button>
+                                            <div *ngIf="cardForm.invalid" class="pull-right">
+                                                <h4 class="text-danger">*<small>lütfen bütün alanları eksiksiz doldurunuz</small></h4>
+                                        </div>
+                                    </Form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .container -->
+
+
+    </main>
+
+    <!-- CURVE -->
+    <div class="position-relative">
+        <div class="shape shape-bottom shape-fluid-x text-dark">
+            <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-8 py-md-11 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+
+                    <!-- Social -->
+                    <ul class="list-unstyled list-inline list-social mb-6 mb-md-0">
+                        <li class="list-inline-item list-social-item me-3">
+                            <a href="#!" class="text-decoration-none">
+                                <img src="https://landkit.goodthemes.co/assets/img/icons/social/instagram.svg"
+                                    class="list-social-icon" alt="...">
+                            </a>
+                        </li>
+                        <li class="list-inline-item list-social-item me-3">
+                            <a href="#!" class="text-decoration-none">
+                                <img src="https://landkit.goodthemes.co/assets/img/icons/social/facebook.svg"
+                                    class="list-social-icon" alt="...">
+                            </a>
+                        </li>
+                        <li class="list-inline-item list-social-item me-3">
+                            <a href="#!" class="text-decoration-none">
+                                <img src="https://landkit.goodthemes.co/assets/img/icons/social/twitter.svg"
+                                    class="list-social-icon" alt="...">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+
+                    <!-- Heading -->
+                    <h6 class="fw-bold text-uppercase text-gray-700">
+                        Products
+                    </h6>
+
+                    <!-- List -->
+                    <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Page Builder
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                UI Kit
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Styleguide
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Documentation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-reset">
+                                Changelog
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+
+                    <!-- Heading -->
+                    <h6 class="fw-bold text-uppercase text-gray-700">
+                        Services
+                    </h6>
+
+                    <!-- List -->
+                    <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Documentation
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Changelog
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Pagebuilder
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-reset">
+                                UI Kit
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-6 col-md-4 offset-md-4 col-lg-2 offset-lg-0">
+
+                    <!-- Heading -->
+                    <h6 class="fw-bold text-uppercase text-gray-700">
+                        Connect
+                    </h6>
+
+                    <!-- List -->
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Page Builder
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                UI Kit
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Styleguide
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Documentation
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Changelog
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="#!" class="text-reset">
+                                Documentation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-reset">
+                                Changelog
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .container -->
+    </footer>
+</body>

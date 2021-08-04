@@ -1,165 +1,227 @@
 
+  <div class="container ">
+          <form #takvimForm="ngForm" >
+                    <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                    <div class="card">
+                                      
+                                            <div class="card-header">
+                                                    <p class="text-center">Kiralama başlangıcı için tarih seçiniz</p>
+                                                  
+                                            </div>
+                                            <div class="card-body">
+                                                    <br>
+                                                    <input [(ngModel)]="ilkTarih" 
+                                                                type="date" 
+                                                                class="form-control" 
+                                                                id="rentDate" 
+                                                                #firstDate="ngModel"
+                                                                name="rentDate"
+                                                                min="{{ minDate }}" 
+                                                                max="{{ maxDate }}" 
+                                                                [class.is-valid]="firstDate.valid"
+                                                                [class.is-invalid]="firstDate.invalid"
+                                                                (change)="changeProgress(50)"
+                                                                required >
+                                                              <small class="text-danger" *ngIf="firstDate.invalid && firstDate.dirty">Lütfen geçerli bir tarih giriniz</small>
+                                                    <br>
+                                            </div>
+                                    </div>
+                            </div>
 
-
-<form >
-  <div class="container">
-    <div class="row">
-      <div class="col col-4">
-        <label class="form-label" for="rentDate"
-          ><h5>Kiralama başlangıcı için tarih giriniz</h5></label
-        >
-        <input
-          [(ngModel)]="ilkTarih"
-          type="date"
-          class="form-control"
-          id="rentDate"
-          name="rentDate"
-          placeholder="yyyy-MM-dd"
-          min="{{ minDate }}"
-          max="{{ maxDate }}"
-          required
-        />
-      </div>
-      <div class="col col-4">
-        <label for="returnDate" class="form-label"
-          ><h5>Kiralama bitişi için tarih giriniz</h5></label
-        >
-        <input
-          [(ngModel)]="sonTarih"
-          type="date"
-          class="form-control"
-          id="returnDate"
-          name="returnDate"
-          ng-model="example.value"
-          placeholder="yyyy-MM-dd"
-          min="{{ ilkTarih }}"
-          max="{{ maxDate }}"
-          required
-        />
-      </div>
-    </div>
-    <button (click)="hesapla()" type="button" class="btn btn-lg btn-primary">
-      Calculate
-    </button>
+                            <div class="row justify-content-center ">
+                                              <div class="col-md-4">
+                                                      <div class="card">
+                                                        <div class="card-header">
+                                                                <p class="text-center">Kiralama bitişi için tarih seçiniz </p>
+                                                        </div>
+                                                        <div class="card-body">
+                                                                <br>
+                                                                <input [(ngModel)]="sonTarih" 
+                                                                            type="date" 
+                                                                            class="form-control" 
+                                                                            id="returnDate"
+                                                                            #lastDate="ngModel" 
+                                                                            name="returnDate" 
+                                                                            (change)="changeProgress(75)"
+                                                                            ng-model="example.value" 
+                                                                            placeholder="yyyy-MM-dd" 
+                                                                            [class.is-valid]="lastDate.valid"
+                                                                            [class.is-invalid]="lastDate.invalid"
+                                                                            min="{{ ilkTarih }}" 
+                                                                            max="{{ maxDate }}" 
+                                                                            required />
+                                                                            <small class="text-danger" *ngIf="lastDate.invalid && lastDate.dirty">Lütfen geçerli bir tarih giriniz</small>
+                                                                <br>
+                                                                
+                                                              </div>
+                                                      </div>
+                                              </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 row justify-content-center">
+                                    <button  (click)="hesapla()" type="button" class="btn btn-lg btn-primary"> Hesapla </button>
+                            </div>
+                        
+                    </div>
+          </form>
   </div>
-</form>
+  <br>
+  <br>
+  
+  
+    <div class="row justify-content-center  align-items-center ">
+      <div class="col-md-8 col-sm-8">
+            <div class="progress" *ngIf="progressBar==0">
+                  <div  class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="progress" *ngIf="progressBar==25">
+                    <div  class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="progress" *ngIf="progressBar==50">
+                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="progress" *ngIf="progressBar==75">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="progress" *ngIf="progressBar==100">
+                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+      </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+        
 <div *ngIf="tutar > 0 && modal" class="modal">
-  <div class="modal-content">
-    <span class="modal-close" (click)="modalClose()">&times;</span>
-    
-    <h1>{{ tutar | currency: "tr " }} </h1>
-    <!-- {{name.pristine}} -->
-     
-    
+        <div class="modal-content col-md-6 col-sm-0">
+       
+        <form #userform="ngForm" novalidate>
+                    <div class="container fluid">
+                          <div class="card">
+                                  <div class="card-header card-header-info">
+                                          <span class="modal-close" (click)="modalClose()">&times;</span>
+                                          <h3 class="text-center">{{ tutar | currency:"₺" }} tutar için  </h3>
+                                          <h3 class="text-center">Ödeme Sayfası  </h3>
+                                  </div>
+                                  <div class="card-body">
+                                          <div class="row ">
+                                                  <div class="col-md-12 col-sm-12">
+                                                    <div class="row">
+                                                          <div class="col-md-4 col-sm-4">
+                                                                <h6>Sistemde kayıtlı kartlarınız</h6>
+                                                          </div>
+                                                          <div class="col-md-8 col-sm-7">
+                                                                  <select name="cardList" id=""   (change)="choice($event)" >
+                                                                              <option value="">Seçiminiz</option>
+                                                                              <option  *ngFor="let card of cards" [value]="card | json" >{{card.cardHolderName}} {{card.cardNumber}}</option>
+                                                                  </select>
+                                                          </div>
+                                                        </div>
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                          <hr style=" border-top: 5px dashed rgb(8, 8, 8);background-color:white; ">
+                                                </div>
+                                                  <div class="col-md-6 col-sm-6">
+                                                        <label for="carHolderNane" class="form-label">Adınız</label>
+                                                        <input type="text"
+                                                                    [(ngModel)]="kart.cardHolderName" 
+                                                                    #holderName="ngModel" 
+                                                                    class="form-control"
+                                                                    name="cardHolderName" 
+                                                                    id="cardHolderName" 
+                                                                    minlength="6"
+                                                                    [class.is-invalid]="holderName.invalid && holderName.touched" 
+                                                                    [class.is-valid]="holderName.valid && holderName.touched"
+                                                                    placeholder="Lütfen kart üstünde yazdığı şekliyle adınızı yazınız"
+                                                                    required>
+                                                        <div class="valid feedback">
+                                                          <small class="text-danger" *ngIf="holderName.invalid && holderName.touched">İsim geçersiz</small>
+                                                        </div>
+                                                  </div>
 
-    <form  novalidate>
-     
-      <div class="row gy-3">
-        <div class="col-md-6">
-          <label for="carHolderNane" class="form-label">Name on card</label>
-          <input
-            type="text"
-            [(ngModel)]="kart.cardHolderName"
-            #name="ngModel"
-            class="form-control"
-            name="cartHolderName"
-            id="cartHolderName"
-            value="Mark"
-            required>
-          <div class="valid feedback">
-            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
-          </div>
-        </div>
+                                                  <div class="col-md-6 col-sm-6">
+                                                        <label for="creditCard" class="form-label">Kart numarası</label>
+                                                        <input [(ngModel)]="kart.cardNumber" 
+                                                                    #cardNumber="ngModel"
+                                                                    class="form-control"
+                                                                    name="kart.cardNumber" 
+                                                                    type="text"
+                                                                    [class.is-invalid]="cardNumber.invalid && cardNumber.touched" 
+                                                                    [class.is-valid]="cardNumber.valid && cardNumber.touched" 
+                                                                    mask="0000 0000 0000 0000" 
+                                                                    minlength="16"
+                                                                    maxlength="20"
+                                                                    class="form-control"
+                                                                    id="creditCard" 
+                                                                    placeholder="" />
+                                                        <div class="valid feedback">
+                                                              <small class="text-danger" *ngIf="cardNumber.invalid && cardNumber.touched ">Geçersiz kart numarası</small>
+                                                        </div>
+                                                  </div>
+                                        </div>
+                                        <hr class="text-white">
 
-        <div class="col-md-6">
-          <label for="creditCard" class="form-label">Credit card number</label>
-          <input
-            [(ngModel)]="kart.cardNumber"
-            #cardNumber="ngModel"
-            name="kart.cardNumber"
-            type="text"
-            [class.is-invalid]="cardNumber.invalid"
-            mask="0000 0000 0000 0000"
-            class="form-control is-invalid"
-            id="creditCard"
-            placeholder=""
-          />
-          <div class="valid feedback">
-            <small class="text-danger" [class.d-none]="cardNumber.valid || name.untouched">card number is required</small>
-          </div>
-        </div>
+                                        <div class="row ">
 
-        <div class="col-md-4">
-          <label for="validationDate" class="form-label">Expiration</label>
-          <input
-            [(ngModel)]="kart.validationDate"       
-            #validationDate="ngModel"
-            name="kart.validationDate"
-            type="date"
-            class="form-control is-invalid"
-            id="validationDate"
-            min="{{ minDate }}"
-            required
-          />
-        </div>
 
-        <div class="col-md-2">
-          <label for="cvv" class="form-label">CVV</label>
-          <input
-            [(ngModel)]="kart.cvv"
-            #cvv="ngModel"
-            name="kart.cvv"
-            type="text"
-            mask="000"
-            class="form-control is-invalid"
-            id="cvv"
-            required
-          />
-        </div>
+                                                  <div class="col-md-6 col-sm-6">
+                                                          <label  for="floatingInputGrid">Geçerlilik tarihi</label>
+                                                          <input [(ngModel)]="kart.validationDate" 
+                                                                      #validationDate="ngModel"
+                                                                      class="form-control"
+                                                                      name="kart.validationDate" 
+                                                                      type="text"
+                                                                      mask="00 00"
+                                                                      id="validationDate" 
+                                                                      required>
+                                                  </div>
 
-        <div class="col col-3">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button
-              (click)="payAndFinish()"
-              style="font-size: 2rem"
-              type="w-100 btn btn-primary btn-lg"
-              class="btn btn-primary"
-            >
-              Pay and Finished
-            </button>
-          </div>
+                                                  <div class="col-md-6 col-sm-6">
+                                                          <label for="cvv" class="form-label">CVV</label>
+                                                          <input [(ngModel)]="kart.cvv" 
+                                                                      #cvv="ngModel" 
+                                                                      class="form-control"
+                                                                      name="kart.cvv" 
+                                                                      type="text" 
+                                                                      mask="000" 
+                                                                      id="cvv" 
+                                                                      required />
+                                                  </div>
+                                          </div>
+                                  </div>              
+                              <div class="btn-group justify-content-center align-items-center" role="group" aria-label="Basic example">
+                                      <button [disabled]="cardNumber.untouched && cardNumber.invalid" (click)="payAndFinish()" style="font-size: 2rem" type="w-100 btn btn-primary btn-lg"class="btn btn-primary">Öde ve Bitir</button>
+                              </div>
+                          </div>
+                    </div>
+        </form>
         </div>
-      </div>
-    </form>
-  </div>
+</div>
+
+<div *ngIf="addCard==true">
+  <dialog-boxing [messages]="'kartınız kaydilsin mi'" (childEvent)="openDialogStatus($event)"></dialog-boxing>
 </div>
 
 <div *ngIf="kucukmodal==true" class="modal">
-  <div class="modal-content" style="width: 25%; height: 50%">
-    <Form class="credit-card-form row">
-      <div class="container">
-        <h4>Lütfen bankanız tarafından size</h4>
-        <h4>gönderilen 8 haneli şifreyi giriniz</h4>
-        {{ rastgele }}
-        <label for="cc-number" class="form-label">Password</label>
-        <input
-          type="text"
-          [(ngModel)]="dogrula"
-          class="form-control"
-          id="cc-number"
-          placeholder="xxxx-xxxx"
-          required
-        />
+        <div class="col-md-6  col-sm-6 row justify-content-center">
+                <div class="modal-content" >
+                        <Form class="credit-card-form row">
+                                  <div class="container fluid">
+                                          <h4>Lütfen bankanız tarafından size</h4>
+                                          <h4>gönderilen 8 haneli şifreyi giriniz</h4>
+                                                  {{ rastgele }}
+                                          <label for="cc-number" class="form-label">Password</label>
+                                          <input type="text" [(ngModel)]="dogrula" class="form-control" id="cc-number" (change)="changeProgress(100)" placeholder="xxxx-xxxx" required />
+                                  </div>
+                                  <button (click)="validate()" style="font-size: 2rem" type="submit" class="btn btn-primary">
+                                    OK
+                                  </button>
+                        </Form>
+                </div>
       </div>
-      <button
-        (click)="validate()"
-        style="font-size: 2rem"
-        type="w-100 btn btn-primary btn-lg"
-        class="btn btn-primary"
-      >
-     OK
-      </button>
-    </Form>
-  </div>
-  
 </div>

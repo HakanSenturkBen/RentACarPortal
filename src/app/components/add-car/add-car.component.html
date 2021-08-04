@@ -1,175 +1,165 @@
 <div class="modal">
-    <div class="modal-content">
-      <div class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Kayıt Ekle</h4>
+        <div class="modal-content">
+                <div class="container-fluid">
+                        <div class="row">
+                                <div class="card">
+                                        <div class="card-header card-header-primary">
+                                          <h4 class="card-title">Kayıt Ekle</h4>
+                                        
+                                        </div>
+                                        <div class="card-body">
+                                                <form #addCar="ngForm" (ngSubmit)=saveCar(false) novalidate>
+                                                          <div class="row">
+                                                                  <div class="col-md-5 col-sm-5">
+                                                                          <label for="brandName" class="bmd-label-floating">Araç adı </label>
+                                                                          <select class="form-select" 
+                                                                                  [(ngModel)]="carDetail.brandName"
+                                                                                  #brandName="ngModel"
+                                                                                  name="carDetail.brandName"
+                                                                                  id="brandName"
+                                                                                  required
+                                                                                  [class.is-invalid]="brandName.invalid || brandName.touched"
+                                                                                  type="text">
+                                                                                  <option *ngFor="let brand of brandlers">{{ brand.brandName }}</option>
+                                                                          </select>
+                                                                          <div class="valid feedback">
+                                                                                  <small class="text-danger" [class.d-none]="brandName.valid || brandName.untouched">listeden seçim yapmalısınız</small>
+                                                                          </div>
+                                                                 </div>
+
+                                                            <div class="col-md-5 col-sm-5" >
+                                                                    <label for="colorName">Araç Rengi</label>
+                                                                    <select class="form-select "
+                                                                                placeholder="Leave a comment here"
+                                                                                id="colorName"
+                                                                                [(ngModel)]="carDetail.colorName"
+                                                                                #colorName="ngModel"
+                                                                                name="carDetail.colorName"
+                                                                                required
+                                                                                [class.is-invalid]="colorName.invalid && colorName.touched"
+                                                                                type="text"
+                                                                                >
+                                                                                <option *ngFor="let color of colorlers">{{ color.colorName }}</option>
+                                                                  </select>
+                                                                  <div class="valid feedback">
+                                                                          <small class="text-danger" [class.d-none]="colorName.valid || colorName.untouched">listeden seçim yapmalısınız</small>
+                                                                  </div>
+                                                            </div>
+                                        
+                                                            <div class="col-md-5 col-sm-5 form-floating ">
+                                                                    <input class="form-control" 
+                                                                                placeholder="Leave a comment here"
+                                                                                id="dailyPrice"       
+                                                                                [(ngModel)]="carDetail.dailyPrice"
+                                                                                #dailyPrice="ngModel"
+                                                                                name="carDetail.dailyPrice"
+                                                                                type="number"
+                                                                                style="height: 50px;"
+                                                                                minvalue="1750"
+                                                                                maxvalue="5550"
+                                                                                required
+                                                                                [class.is-invalid]="dailyPrice.invalid && dailyPrice.touched"
+                                                                                [class.is-errors]="dailyPrice.errors">
+                                                                    <label for="dailyPrice">Günlük kira</label>
+                                                                    <div *ngIf="dailyPrice.errors&& (dailyPrice.invalid && dailyPrice.touched)" class="valid feedback">
+                                                                            <small class="text-danger" [class.d-none]="dailyPrice.valid || dailyPrice.untouched">günlük kiralama fiyatı bilgisi gereklidir</small>
+                                                                            <small *ngIf="dailyPrice.errors.min" class="text-danger" >amına godumun berberi</small>
+                                                                  </div>
+                                                            </div>
+
+                                                            <div class="col-md-5 col-sm-5 form-floating">
+                                                                    <input type="text" 
+                                                                                class="form-control" 
+                                                                                placeholder="leave a comment here"
+                                                                                id="modelYear" 
+                                                                                required
+                                                                                [(ngModel)]="carDetail.modelYear"
+                                                                                #modelYear="ngModel"
+                                                                                name="carDetail.modelYear"
+                                                                                type="text"
+                                                                                style="height:50px;"
+                                                                                minlength="4"
+                                                                                maxlength="4"
+                                                                                [class.is-invalid]="modelYear.invalid && modelYear.touched">
+                                                                                <div *ngIf="modelYear.errors&& (modelYear.invalid && modelYear.touched)" class="valid feedback">
+                                                                                        <small class="text-danger" [class.d-none]="modelYear.valid && modelYear.untouched">model yılı bilgisi gereklidir.</small>
+                                                                                        <small *ngIf="modelYear.errors.minlength" class="text-danger">model yılını dört digit yapmalısınız</small>
+                                                                                </div>
+                                                                    <label for="modelYear">Model year</label>
+                                                            </div>
+
+                                                            <div class="col-md-5 col-sm-5">
+                                                                    <div class="form-check">
+                                                                            <label class="form-check-label">Aktiflik
+                                                                              <input class="form-check-input" 
+                                                                                          type="checkbox"
+                                                                                          value="" 
+                                                                                          [(ngModel)]="carDetail.active"
+                                                                                          name="carDetail.active"
+                                                                                          #active="ngModel"
+                                                                                          required>
+                                                                                <span class="form-check-sign">
+                                                                                          <span class="check"></span>
+                                                                              </span>
+                                                                            </label>
+                                                                    </div>
+                                                            </div>
+                                        
+                                                            <div class="col-md-5 col-sm-5 form-floating">
+                                                                <input class="form-control" type="date"
+                                                                    [(ngModel)]="carDetail.createDate"
+                                                                    name="carDetail.createDate"
+                                                                    #createDate="ngModel"
+                                                                    class="form-control"
+                                                                    id="createDate"
+                                                                    placeholder="yyyy-MM-dd"
+                                                                    min="{{ minDate }}"
+                                                                    max="{{maxDate}}"
+                                                                    required/>
+                                                                <label for="createDate">Kayıt tarihi</label>
+                                                                <div class="valid feedback">
+                                                                  <small class="text-danger" [class.d-none]="createDate.valid || createDate.untouched">kayıt tarihi bilgisi gereklidir.</small>
+                                                                </div>
+                                                            </div>
+
+                                                            {{carDetail.createDate|json}}
+
+                                                            <div class="col-md-12 col-sm-12 form-floating">
+                                                                <input class="form-control" type="text"
+                                                                      [(ngModel)]="carDetail.description"
+                                                                      name="carDetail.description"
+                                                                      #description="ngModel"
+                                                                      class="form-control"
+                                                                      id="description"
+                                                                      placeholder="description"
+                                                                      minlength="5"
+                                                                      maxlength="256"
+                                                                      style="height: 50px;"
+                                                                      required/>
+                                                                  <label for="description">About car</label>
+                                                                  <div class="valid feedback">
+                                                                    <small class="text-danger" [class.d-none]="description.valid || description.untouched">açıklama bilgisi gereklidir.</small>
+                                                                  </div>
+                                                            </div>
+
+                                                            <div class="form-group" style="top:20px">
+                                                                    <div class="col col-12 col-sm-12">
+                                                                      <button *ngIf="!addCar.form.invalid" type="submit"  class="card-header card-header-warning" style="padding: 10px;">
+                                                                        <span class=" card-category"><i class="material-icons">save</i>Kaydet</span>
+                                                                      </button>
+                                        
+                                                                      <button (click)="onChange(false)" class="card-header card-header-info" style="padding: 10px;">
+                                                                        <span class=" card-category"><i class="material-icons">logout</i></span>Geri
+                                                                      </button>
+                                                                    </div>
+                                                              </div>
+                                                          </div>
+                                                </form>
+                                        </div>
+                                
+                                </div>
+                        </div>
                 </div>
-                <div class="card-body">
-                  
-                  <form #addCar="ngForm" (ngSubmit)=saveCar(false) novalidate>
-                    
-                    
-                    <div class="row">
-
-                      <div class="col-md-5">
-                        <label for="brandName" class="bmd-label-floating">Araç adı </label>
-                        <select class="form-select" 
-                                [(ngModel)]="carDetail.brandName"
-                                #brandName="ngModel"
-                                name="carDetail.brandName"
-                                id="brandName"
-                                required
-                                [class.is-invalid]="brandName.invalid || brandName.touched"
-                                type="text">
-                                <option *ngFor="let brand of brandlers">{{ brand.brandName }}</option>
-                        </select>
-                        <div class="valid feedback">
-                          <small class="text-danger" [class.d-none]="brandName.valid || brandName.untouched">listeden seçim yapmalısınız</small>
-                        </div>
-                      </div>
-
-                      <div class="col-md-5" >
-                          <label for="colorName">Araç Rengi</label>
-                          <select class="form-select "
-                                placeholder="Leave a comment here"
-                                id="colorName"
-                                [(ngModel)]="carDetail.colorName"
-                                #colorName="ngModel"
-                                name="carDetail.colorName"
-                                required
-                                [class.is-invalid]="colorName.invalid || colorName.touched"
-                                type="text"
-                                >
-                          <option *ngFor="let color of colorlers">{{ color.colorName }}</option>
-                        </select>
-                        <div class="valid feedback">
-                          <small class="text-danger" [class.d-none]="colorName.valid || colorName.untouched">listeden seçim yapmalısınız</small>
-                        </div>
-                      </div>
-  
-                      <div class="col-md-5 form-floating ">
-                            <input class="form-control" 
-                                   placeholder="Leave a comment here"
-                                   id="dailyPrice"       
-                                   [(ngModel)]="carDetail.dailyPrice"
-                                   #dailyPrice="ngModel"
-                                   name="carDetail.dailyPrice"
-                                   type="number"
-                                   style="height: 50px;"
-                                   min="1750"
-                                   max="5550"
-                                   required
-                                   [class.is-invalid]="dailyPrice.invalid || dailyPrice.touched"
-                                   [class.is-errors]="dailyPrice.errors">
-                            <label for="dailyPrice">Günlük kira</label>
-                            <div *ngIf="dailyPrice.errors&& (dailyPrice.invalid||dailyPrice.touched)" class="valid feedback">
-                              
-                              <small class="text-danger" [class.d-none]="dailyPrice.valid || dailyPrice.untouched">günlük kiralama fiyatı bilgisi gereklidir</small>
-                              <small *ngIf="dailyPrice.errors.min" class="text-danger" >amına godumun berberi</small>
-                            </div>
-
-                      </div>
-
-                      <div class="col-md-5 form-floating">
-                            <input type="text" 
-                                   class="form-control" 
-                                   placeholder="leave a comment here"
-                                   id="modelYear" 
-                                   required
-                                   [(ngModel)]="carDetail.modelYear"
-                                   #modelYear="ngModel"
-                                   name="carDetail.modelYear"
-                                   type="text"
-                                   style="height:50px;"
-                                   minlength="4"
-                                   maxlength="4"
-                                   [class.is-invalid]="modelYear.invalid || modelYear.touched">
-                                   <div *ngIf="modelYear.errors&& (modelYear.invalid||modelYear.touched)" class="valid feedback">
-                                        <small class="text-danger" [class.d-none]="modelYear.valid || modelYear.untouched">model yılı bilgisi gereklidir.</small>
-                                        <small *ngIf="modelYear.errors.minlength" class="text-danger" >model yılını dört digit yapmalısınız</small>
-                                  </div>
-                            <label for="modelYear">Model year</label>
-                            
-                      </div>
-
-                      <div class="col-md-5 ">
-                        <div class="form-check">
-                          <label class="form-check-label">Aktiflik
-                            <input class="form-check-input" 
-                                   type="checkbox"
-                                   value="" 
-                                   [(ngModel)]="carDetail.active"
-                                   name="carDetail.active"
-                                   #active="ngModel"
-                                   required>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </div>
-  
-                      <div class="col-md-5 form-floating">
-                          <input class="form-control" type="date"
-                               [(ngModel)]="carDetail.createDate"
-                               name="carDetail.createDate"
-                               #createDate="ngModel"
-                               class="form-control"
-                               id="createDate"
-                               placeholder="yyyy-MM-dd"
-                               min="{{ minDate }}"
-                               max="{{maxDate}}"
-                               required/>
-                          <label for="createDate">Kayıt tarihi</label>
-                          <div class="valid feedback">
-                            <small class="text-danger" [class.d-none]="createDate.valid || createDate.untouched">kayıt tarihi bilgisi gereklidir.</small>
-                          </div>
-                      </div>
-
-                      {{carDetail.createDate|json}}
-
-                      <div class="col-md-12 form-floating">
-                          <input class="form-control" type="text"
-                                [(ngModel)]="carDetail.description"
-                                name="carDetail.description"
-                                #description="ngModel"
-                                class="form-control"
-                                id="description"
-                                placeholder="description"
-                                minlength="5"
-                                maxlength="256"
-                                style="height: 50px;"
-                                required/>
-                            <label for="description">About car</label>
-                            <div class="valid feedback">
-                              <small class="text-danger" [class.d-none]="description.valid || description.untouched">açıklama bilgisi gereklidir.</small>
-                            </div>
-                      </div>
-
-                      <div class="form-group" style="top:20px">
-                              <div class="col col-12">
-                                <button *ngIf="!addCar.form.invalid" type="submit"  class="card-header card-header-warning" style="padding: 10px;">
-                                  <span class=" card-category"><i class="material-icons">save</i>Kaydet</span>
-                                </button>
-  
-                                <button (click)="onChange(false)" class="card-header card-header-info" style="padding: 10px;">
-                                  <span class=" card-category"><i class="material-icons">logout</i></span>Geri
-                                </button>
-                              </div>
-                        </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
   </div>
   

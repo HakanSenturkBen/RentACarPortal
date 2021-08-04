@@ -1,0 +1,21 @@
+<ng-container *ngIf="formField?.dirty">
+    <span class="field-error" *ngIf="formField?.hasError('required')"
+      >geçersiz alan adı
+    </span>
+    <span class="field-error" *ngIf="formField?.hasError('noEmptyString')">
+      Lütfen geçerli bir isim giriniz
+    </span>
+  
+    <span
+      class="field-error"
+      *ngIf="formField?.hasError('normalEmailRule')"
+    >
+      Email format is invalid.
+    </span>
+    <span
+    class="field-error"
+    *ngIf="formField?.hasError('noWhitespaceRequired')"
+  >
+    no space allowed
+  </span>
+  </ng-container>

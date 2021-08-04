@@ -15,6 +15,10 @@ export class DialogBoxingComponent implements OnInit {
 
   
   ngOnInit(): void {
+    if(this.messages==null){
+      this.messages="Kayıt silinecek emin misiniz?"
+    }
+
   }
 
   onChange(value:any) {

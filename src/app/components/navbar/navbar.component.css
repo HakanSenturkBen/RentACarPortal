@@ -1,29 +1,47 @@
 .hakan{
-  
-    float: center;
-    align-items: center;
-    justify-content: center;
-    background-color:  #e54644;
-    box-shadow:8px 8px 20px rgba(0,0,0,0.6);
+    box-shadow:8px 8px 20px rgba(0,0,0,0.3);
     border-radius:5px;
-    height: 6vh;
-    margin-bottom: 1rem;
-}
+    height: 8vh;
+    background: -webkit-repeating-radial-gradient(bottom left,#6fccd6,#058492); 
+ 
+    margin-bottom: 50px;
+    width: 1400%;
+    
+    
+ }
+
 input{
     float: right;
     margin-right: 10px;
+    background: none;
 }
 
 li{
-    border-radius:.5rem;
-    box-shadow:4px 4px 4px 4px rgba(0,0,0,0.3);
-    float: left;
+    color: rgb(206, 199, 199);
     margin-left: 10px;
+    box-shadow:2px 2px 2px 2px rgba(219, 160, 231, 0.2);
     
 }
 
+li:hover{
+    box-shadow:4px 4px 4px 4px rgba(219,160,231,0.02);
+}
+
+a{
+    color: rgb(238, 234, 234);
+    
+}
+a:hover{
+    color: #f2e6f4;
+    background: -webkit-repeating-radial-gradient(top left,#bf80c9    ,#7e0092); 
+    box-shadow:4px 4px 4px 4px rgba(100, 98, 98, 0.2);
+}
+a:active{
+box-shadow:1px 1px 1px 1px rgba(0,0,0,0.2);
+}
+
 li:active{
-    box-shadow:2px 2px 2px 2px rgba(0,0,0,0.2);
+    box-shadow:1px 1px 1px 1px rgba(0,0,0,0.2);
 }
 
 

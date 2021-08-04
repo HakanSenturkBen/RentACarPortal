@@ -18,36 +18,39 @@ export class AddBrandComponent implements OnInit {
 
   constructor(private tools: ToolsService,
     private brandService: BrandService,
-    private fb:FormBuilder) { }
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.createAddBrandForm()
 
   }
 
-  createAddBrandForm(){
-    this.addBrandForm=this.fb.group({
-      brandName:["",Validators.required]
+  createAddBrandForm() {
+    this.addBrandForm = this.fb.group({
+      brandName: ["", Validators.required]
     })
 
 
   }
 
   save(value: any) {
-    if(this.addBrandForm.valid){
-      this.brand=Object.assign({},this.addBrandForm.value)
+    if (this.addBrandForm.valid) {
+      this.brand = Object.assign({}, this.addBrandForm.value)
 
       this.brandService.addBrand(this.brand).subscribe(res => {
         this.tools.toastInfo(res.message.toString(), "bottom-right");
       }, error => {
         this.tools.toastInfo(error.error.message, "bottom-right");
-      })
-      this.onChange(value);  
+        for (var hata of error.error.Errors) {
+          this.tools.toastInfo(hata.ErrorMessage, "bottom-right")
+        }
+      });
+      this.onChange(value);
     }
-    
+
   }
   onChange(value: any) {
     this.childEvent.emit(value);
   }
-  
+
 }

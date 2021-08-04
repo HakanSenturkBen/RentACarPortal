@@ -30,9 +30,10 @@
   .modal-content {
     background-color: #fff;
     width: 60%;
-    max-height: 80%;
+    max-width: 100%;
+    max-height: 100%;
     margin: 2rem;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 0.25rem;
     box-shadow: 0 4px 20 px rgba(0, 0, 0, 0.8);
     overflow: auto;

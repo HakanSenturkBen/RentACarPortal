@@ -1,0 +1,27 @@
+
+<Form [formGroup]="loginForm" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+  <div class="col-12 col-lg-auto mb-3 mb-lg-0 ">
+    <button type="submit " (click)="onChange()" class="rightsuccess"><i class="material-icons">login</i></button>
+  </div>
+
+  <div class="col col-5 pull-right">
+    <div class="col-12 col-lg-auto mb-3 mb-lg-0  form-floating" >
+      <input  style="height: 40px;" class="form-control " placeholder="Leave a comment here" id="password" type="password"
+        (keyup.enter)="onChange()" required
+        formControlName="password">
+      <label for="password">parola</label>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-auto mb-3 mb-lg-0 ">
+    <div class="col col-5 pull-right">
+      <div class="col-12 col-lg-auto mb-3 mb-lg-0  form-floating">
+        <input class="form-control "  style="height: 40px;" placeholder="Leave a comment here" id="email" type="text"
+          (keyup.enter)="onChange()" required
+          formControlName="email">
+        <label for="dailyPrice">Üye adı</label>
+      </div>
+    </div>
+  </div>
+
+</Form>

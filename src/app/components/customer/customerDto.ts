@@ -1,15 +1,22 @@
-export interface CustomerDto{
-    customerId:number, 		
-    name:string,
-    email:string,
-    phoneNumber:string,
-    password:string,
-    citizenShipNumber:string,
-    companyName:string,
-    taxOfficeName:string,
-    taxNumber:string,
-    coPhoneNumber:string,
-    address:string,
-    city:string,
-    state:string
+export interface CustomerDto {
+
+    customerId: number,
+    userId: number,
+    lastName: string,
+    email: string,
+    firstName: string,
+    phoneNumber: string,
+    password: string,
+    citizenShipNumber: string,
+    companyId: number,
+    companyName: string,
+    taxOfficeName: string,
+    taxNumber: string,
+    coPhoneNumber: string,
+    addressId: number,
+    address1: string,
+    address2: string,
+    city: string,
+    state: string,
+    
 }

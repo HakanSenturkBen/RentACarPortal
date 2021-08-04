@@ -43,16 +43,16 @@ export class AddCarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let mouth:number= new Date().getMonth() + 1;
-    
-    if(mouth>9){
+    let mouth: number = new Date().getMonth() + 1;
+
+    if (mouth > 9) {
       this.minDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() - 5);
       this.maxDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() + 5);
-    
-    }else{
 
-    this.minDate = new Date().getFullYear() + "-" + "0" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() - 5);
-    this.maxDate = new Date().getFullYear() + "-" + "0" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() + 5);
+    } else {
+
+      this.minDate = new Date().getFullYear() + "-" + "0" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() - 5);
+      this.maxDate = new Date().getFullYear() + "-" + "0" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() + 5);
     }
 
     this.brand.getBrands().subscribe(res => { this.brandlers = res.data; });
@@ -74,9 +74,9 @@ export class AddCarComponent implements OnInit {
         brandID = brand.id;
       }
     }
-    let tarih=(this.carDetail.createDate.toString()).split("-",3);
-    let tarih1=tarih[2]+"-"+tarih[1]+"-"+tarih[0]
-    
+    let tarih = (this.carDetail.createDate.toString()).split("-", 3);
+    let tarih1 = tarih[2] + "-" + tarih[1] + "-" + tarih[0]
+
     this.car = {
       id: carid,
       brandId: brandID,
@@ -87,21 +87,23 @@ export class AddCarComponent implements OnInit {
       createDate: tarih1,
       active: true
     }
-    
+
 
 
 
   }
 
   saveCar(value: any) {
-    
+
     this.dataTrans(0)
-    
-    this.tools.toastInfo("buradaydı","center-center")
+
     this.carService.saveCar(this.car).subscribe(res => {
       this.tools.toastSuccess(res.message.toString(), "center-center")
     }, error => {
-      this.tools.toastWarning(error.error.message, "center-center")
+      this.tools.toastInfo(error.error.message, "bottom-right");
+      for (var hata of error.error.Errors) {
+        this.tools.toastInfo(hata.ErrorMessage, "bottom-right")
+      }
     });
 
     this.modalClose(value)
@@ -110,7 +112,7 @@ export class AddCarComponent implements OnInit {
 
   modalClose(value: any) {
     this.onChange(value);
-    this.tools.refreshPage();
+    //this.tools.refreshPage();
   }
 
   onChange(value: any) {

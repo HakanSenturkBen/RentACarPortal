@@ -1,38 +1,45 @@
-<div class="container-fluid">
-<div class="hakan">
-  <div class="row">
-    <div class="col col-6">
-      <ul class="nav nav-tabs" data-tabs="tabs">
-        <li class="nav-item">
-          <a class="nav-link " href="#home" data-toggle="tab">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cars" data-toggle="tab">Updates</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="dataprocessor" data-toggle="tab">DataProcessor</a>
-        </li>
-        
-        
-      </ul>
-    </div>
-    <div class="col md-2"></div>
-    <div class="col md-2">
-      <input
-        type="text "
-        class="form-control"
-        placeholder="name of user"
-        required
-      />
-    </div>
-    <div class="col md-2">
-      <input
-        type="text "
-        class="form-control"
-        placeholder="password"
-        required
-      />
-    </div>
-  </div>
-</div>
-</div>
+<div class="container">
+        <div class="row">
+              <nav class="navbar hakan">
+                      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                              <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 md-lg-0">
+                                <li><a href="#home" class="nav-link px-2 "><i class="material-icons">home</i></a></li>
+                                <li><a href="cars" class="nav-link px-2">Araç Listesi</a></li>
+                                <li><a routerLink="dataprocessor" class="nav-link px-2">Veri Tabanı</a></li>
+                              </ul>
+                      </div>
+                  
+                    <div class="col col-6 mb-md-0 md-lg-0 " *ngIf="logining=='0'">
+                            <button type="button" routerLink="register" class="rightsuccess"><i
+                                class="material-icons">person_add</i></button>
+                            <button type="submit " (click)="log()" class="rightsuccess"><i class="material-icons">login</i></button>
+
+                    </div>
+
+                    <div class="col col-md-6 col-sm6" *ngIf="logining=='1'">
+                            <login (childEvent)="olay($event)"></login>
+                    </div>
+
+                    <div  *ngIf="logining.length>2">
+                              
+                            <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                          <li class="page-item">
+                                              <a class="page-link" href="membership" aria-label="Previous"><span class="material-icons" title="üyelik işlemleri" style="color: bisque;">swap_horiz</span></a>
+                                          </li>
+                                          <li class="dropdown">
+                                                <a  role="button" data-bs-toggle="dropdown">{{logining}}</a>
+                                                <ul class="dropdown-menu justify-content-end">
+                                                      <li><a class="dropdown-item" href="membership">Membership</a></li>
+                                                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                      <li><a class="dropdown-item text-dark" (click)="logOut()">Exit</a></li>
+                                                </ul>
+                                                <li class="page-item"> <a (click)="logOut()" class="page-link" aria-label="Next"><span class="material-icons" title="çıkış" style="color: bisque;">launch</span></a>
+                                          </li>
+                                    </ul>
+                            </nav>
+                    </div>
+              </nav>
+        </div>
+</div> 
+ 

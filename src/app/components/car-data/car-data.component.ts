@@ -21,7 +21,7 @@ export class CarDataComponent implements OnInit {
   @Input() brandlist: BrandModel[];
   @Input() colorlist: ColorModel[];
   @Input() carDetail: CarInfoModel;
-
+  dataLoad=true;
   car: CarModel;
   baslik: string;
 
@@ -38,6 +38,9 @@ export class CarDataComponent implements OnInit {
   }
 
   dataTrans(carid: number) {
+
+    let tarih=(this.carDetail.createDate.toString()).split("-",3);
+    let tarih1=tarih[2]+"-"+tarih[1]+"-"+tarih[0]
     let colorID: number;
     let brandID: number;
     for (let color of this.colorlist) {
@@ -57,7 +60,7 @@ export class CarDataComponent implements OnInit {
       dailyPrice: this.carDetail.dailyPrice,
       modelYear: this.carDetail.modelYear,
       description: this.carDetail.description,
-      createDate: "",
+      createDate: tarih1,
       active: true
     }
 
@@ -66,16 +69,24 @@ export class CarDataComponent implements OnInit {
   }
 
   save() {
+    this.dataLoad=false;
 
     this.dataTrans(0)
 
     this.carService.saveCar(this.car).subscribe(res => {
       this.tools.toastSuccess(res.message.toString(), "center-center")
+    },error=>{
+      this.tools.toastInfo(error.error.message,"bottom-right");
+      for (var hata of error.error.Errors) {
+        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
+         }
     });
+    this.dataLoad=true;
 
   }
 
   update() {
+    this.dataLoad=false;
     this.dataTrans(this.carDetail.carId)
     this.carService.updateCar(this.car).subscribe(res => {
       this.tools.toastSuccess(res.message.toString(), "center-center")
@@ -87,15 +98,17 @@ export class CarDataComponent implements OnInit {
 
     });
 
-
+    this.dataLoad=true;
   }
 
   delete() {
+    this.dataLoad=false;
     this.dataTrans(this.carDetail.carId)
     this.carService.delCar(this.car).subscribe(res => {
       this.tools.toastSuccess(res.message.toString(), "center-center")
     });
-
+    this.dataLoad=true;
+    
 
   }
 

@@ -1,8 +1,38 @@
 <div class="modal">
     <div class="modal-content">
         <div class="content">
-            <p (click)="onChange(false)">add-image works!</p>
+            <div class="card">
+                <div class="card-header-success text-center">
+                    <h4>Otomobil resmi kaydet</h4>
+                    <div class="card">
+                        <div class="card-body ">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button (click)="onChange(false)">Çık</button>
+                                    <button (click)="savePaths()">Araç resimleri seri kaydet</button>
+                                    <div class="card-header-warning">
+                                        <select autofocus class="form-control" id="" style="padding: 10px;" name="carId" [(ngModel)]="carId">
+                                            <option selected >Otomobil Listesi</option>
+                                            <option value="{{car.carId}}" *ngFor="let car of carList">{{car.brandName}} {{car.colorName}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body" (paste)="onPaste($event)">
+                            <img width="1000" height="600" #imgRenderer />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-

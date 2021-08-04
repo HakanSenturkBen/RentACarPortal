@@ -28,14 +28,14 @@ export class DataProcessorComponent implements OnInit {
   addImageWindow = false;
   updateBrandWindow = false;
   updateColorWindow = false;
-  
+
   onUpdatedData: string;
-  secim:string;
+  secim: string;
   public openDialog: string;
 
   changeCar: CarInfoModel;
-  color:ColorModel;
-  brand:BrandModel;
+  color: ColorModel;
+  brand: BrandModel;
 
 
   carInfo: CarInfoModel = {
@@ -78,16 +78,16 @@ export class DataProcessorComponent implements OnInit {
 
   }
 
-  getBrandWindow(brand:BrandModel){
-    this.brand=brand;
-    this.dataLoad=false;
-    this.updateBrandWindow=true;
+  getBrandWindow(brand: BrandModel) {
+    this.brand = brand;
+    this.dataLoad = false;
+    this.updateBrandWindow = true;
   }
 
-  getColorWindow(color:ColorModel){
-    this.color=color;
-    this.dataLoad=false;
-    this.updateColorWindow=true;
+  getColorWindow(color: ColorModel) {
+    this.color = color;
+    this.dataLoad = false;
+    this.updateColorWindow = true;
   }
 
 
@@ -106,26 +106,36 @@ export class DataProcessorComponent implements OnInit {
 
       switch (this.secim) {
         case "car":
-          
+          this.delete(this.changeCar);
+          let carId: number = this.changeCar.carId;
+          this.car.delCarById(carId).subscribe(res => {
+            this.tool.toastWarning(res.message, "center-center");
+          });
+          this.tool.toastSuccess(this.changeCar.brandName + " markası için araç kaydı silme işlemi yapıldı", "bottom-center");
           break;
+
         case "brand":
-          this.tool.toastSuccess(this.brand.brandName+" markası için tuşa basıldı :" , "bottom-center");
-  
+          this.delBrand(this.brand);
+          this.brandService.delBrand(this.brand).subscribe(res => {
+            this.tool.toastWarning(res.message, "center-center");
+          });
+          this.tool.toastSuccess(this.brand.brandName + " markası için kayıt silme işlemi gerçekleşti :", "bottom-center");
           break;
+
         case "color":
-          this.tool.toastSuccess(this.color.colorName+" rengi için tuşa basıldı :"  , "bottom-center");
+          this.delColor(this.color);
+          this.colorService.delColor(this.color).subscribe(res => {
+            this.tool.toastWarning(res.message, "center-center");
+          });
+          this.tool.toastSuccess(this.color.colorName + " rengi için kayıt silme işlemi gerçekleşti :", "bottom-center");
           break;
-      
+
         default:
           break;
       }
-     
-      this.tool.toastSuccess("Okey tuşuna basıldı :" + this.changeCar.carId, "bottom-center");
-      let carId: number = this.changeCar.carId;
 
-      this.car.delCarById(carId).subscribe(res => {
-        this.tool.toastWarning(res.message, "center-center");
-      });
+
+
     } else {
       this.tool.toastSuccess("artık olay değişti", "bottom-right");
     }
@@ -133,23 +143,23 @@ export class DataProcessorComponent implements OnInit {
   }
 
 
-  delColor(color:ColorModel){
-    this.color=color;
-    this.secim="color"
-    this.openDialog="0";
-    
-    
+  delColor(color: ColorModel) {
+    this.color = color;
+    this.secim = "color"
+    this.openDialog = "0";
+
+
   }
 
-  delBrand(brand:BrandModel){
-    this.brand=brand;
-    this.secim="brand"
-    this.openDialog="0";
+  delBrand(brand: BrandModel) {
+    this.brand = brand;
+    this.secim = "brand"
+    this.openDialog = "0";
   }
 
   delete(car: CarInfoModel) {
     this.changeCar = car;
-    this.secim="car";
+    this.secim = "car";
     this.openDialog = "0";
   }
 

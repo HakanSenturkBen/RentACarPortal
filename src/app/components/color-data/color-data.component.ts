@@ -9,33 +9,38 @@ import { ColorsService } from 'src/app/services/colors.service';
   styleUrls: ['./color-data.component.css']
 })
 export class ColorDataComponent implements OnInit {
-  
-  @Input() color:ColorModel
 
-  constructor(private tools:ToolsService,
-    private colorService:ColorsService) { }
+  @Input() color: ColorModel
+
+  constructor(private tools: ToolsService,
+    private colorService: ColorsService) { }
 
   ngOnInit(): void {
   }
 
-  update(){
-    this.colorService.updateColor(this.color).subscribe(res=>{
-      this.tools.toastSuccess(res.message.toString(),"center-center");
-    },error=>{
-      this.tools.toastSuccess(error.error.message.toString(),"center-center");
+  update() {
+    this.colorService.updateColor(this.color).subscribe(res => {
+      this.tools.toastSuccess(res.message.toString(), "center-center");
+    }, error => {
+      this.tools.toastInfo(error.error.message, "bottom-right");
+      for (var hata of error.error.Errors) {
+        this.tools.toastInfo(hata.ErrorMessage, "bottom-right")
+      }
     });
   }
 
-  delete(){
-    this.colorService.delColor(this.color).subscribe(res=>{
-      this.tools.toastSuccess(res.message.toString(),"center-center");
-    },error=>{
-      this.tools.toastSuccess(error.error.message,"center-center");
-    })
-
+  delete() {
+    this.colorService.delColor(this.color).subscribe(res => {
+      this.tools.toastSuccess(res.message.toString(), "center-center");
+    }, error => {
+      this.tools.toastInfo(error.error.message, "bottom-right");
+      for (var hata of error.error.Errors) {
+        this.tools.toastInfo(hata.ErrorMessage, "bottom-right")
+      }
+    });
   }
 
-  modalClose(){
+  modalClose() {
     this.tools.refreshPage();
   }
 
