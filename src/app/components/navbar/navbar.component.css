@@ -1,11 +1,12 @@
 .hakan{
     box-shadow:8px 8px 20px rgba(0,0,0,0.3);
     border-radius:5px;
-    height: 8vh;
+    height: 10vh;
     background: -webkit-repeating-radial-gradient(bottom left,#6fccd6,#058492); 
- 
+    
     margin-bottom: 50px;
-    width: 1400%;
+    
+    align-items: flex-start;
     
     
  }

@@ -156,7 +156,6 @@ td{
   box-shadow: inset 0 0 0.50em 0  rgb(30, 97, 116), 0 -1 1.0em 0 #a50707;
   
 }
-
 .rightwarning-ligthShadow{
   color: white;
   background: -webkit-repeating-radial-gradient( bottom left, #c98b8b, #be2525); 
@@ -165,7 +164,6 @@ td{
   
   box-shadow: inset 0 0 0.1em 0  rgb(221, 224, 224), 0 -1 .75em 0 #be2525;
 }
-
 .rightinfo-ligthShadow{
   color: white;
   background: -webkit-repeating-radial-gradient( bottom left, #eead6c, #fc840c); 
@@ -173,7 +171,6 @@ td{
   margin-left: 10px;
   
   box-shadow: inset 0 0 0.1em 0  rgb(221, 224, 224), 0 -1 .75em 0  #fc840c;  
-  
 }
 
 

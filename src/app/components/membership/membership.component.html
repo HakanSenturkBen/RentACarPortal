@@ -3,32 +3,30 @@
     <!-- HEADER -->
     <header class=" pt-9 pb-12 d-none d-md-block ">
         <div class="container-md">
-            <div class="row align-items-center fixed-top bg-dark">
-                <div class="col-1 ">
-                    <button routerLink="/cars" class="btn btn-sm btn-gray-300-20">
-                        <i class="material-icons">logout</i>
-                    </button>
+                <div class="row align-items-center fixed-top bg-dark">
+                        <div class="col-1 ">
+                                <button routerLink="/cars" class="btn btn-sm btn-gray-300-20">
+                                    <i class="material-icons">logout</i>
+                                </button>
+                        </div>
+                        <div class="col">
+                                <h1 class="fw-bold text-white"> Üyelik İşlemleri </h1>
+                        </div>
+                        <div class="progress progress-line-primary ">
+                                <div *ngIf="progressbar==25" class="progress-bar progress-bar-success" role="progressbar"
+                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                <div *ngIf="progressbar==50" class="progress-bar progress-bar-success" role="progressbar"
+                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+                                <div *ngIf="progressbar==75" class="progress-bar progress-bar-success" role="progressbar"
+                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                                <div *ngIf="progressbar==100" class="progress-bar progress-bar-success" role="progressbar"
+                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                        </div>
                 </div>
-                <div class="col">
-                    <h1 class="fw-bold text-white"> Üyelik İşlemleri </h1>
-                </div>
-                <div class="progress progress-line-primary ">
-                    <div *ngIf="progressbar==25" class="progress-bar progress-bar-success" role="progressbar"
-                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
-                    <div *ngIf="progressbar==50" class="progress-bar progress-bar-success" role="progressbar"
-                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
-                    <div *ngIf="progressbar==75" class="progress-bar progress-bar-success" role="progressbar"
-                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                    <div *ngIf="progressbar==100" class="progress-bar progress-bar-success" role="progressbar"
-                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                </div>
-            </div>
         </div>
     </header>
     <br>
     <br>
-
-
     <!-- MAIN -->
     <main class="pb-8 pb-md-11 mt-md-n6">
         <div class="container-md">
@@ -64,9 +62,7 @@
                                     <h4 class="mb-0 ">
                                         Üye Kayıt Bilgileri
                                     </h4>
-
                                 </div>
-
                             </div>
                         </div>
                         <div class="card-body">
@@ -95,7 +91,6 @@
                                                                     </div>
                                                         </div>
                                                 </div>
-
                                             <div class="col-md-6 col-sm-9">
                                                     <div class="form-group" [ngClass]="{'has-error' :  userForm.get('lastName').errors && (userForm.get('lastName').touched) || (userForm.get('lastName').dirty)}">
                                                             <div class="form-floating">
@@ -151,7 +146,6 @@
                                                             </div>
                                                     </div>
                                             </div>
-
                                             <div class="col-md-6 col-sm-6">
                                                     <div class="form-group" [ngClass]="{'has-error' :  userForm.get('password').errors && (userForm.get('password').touched) || (userForm.get('password').dirty)}">
                                                             <div class="form-floating">
@@ -214,9 +208,7 @@
                                                 <h4 class="text-danger">*<small>lütfen bütün alanları eksiksiz doldurunuz</small></h4>
                                         </div>
                                     </Form>
-
                                 </div>
-
                                 <!-- company -->
                                 <div *ngIf="progressbar==25||progressbar==100" class="list-group-item baslik ">
                                     <Form [formGroup]="companyForm">

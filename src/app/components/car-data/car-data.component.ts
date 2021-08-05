@@ -33,8 +33,13 @@ export class CarDataComponent implements OnInit {
     this.baslik = wait[0];
   }
   log(x: any) {
-    if (this.carDetail.dailyPrice < 1750)
+    if (this.carDetail.dailyPrice < 1750){
+        this.carDetail.dailyPrice=null
       this.tools.toastSuccess("günlük kira bedeli 1750 den az olamaz", "center-center")
+    }else if(this.carDetail.dailyPrice>5500){
+      this.carDetail.dailyPrice=null
+      this.tools.toastSuccess("günlük kira bedeli 5500 den çok olamaz", "center-center")
+    }
   }
 
   dataTrans(carid: number) {
@@ -64,8 +69,6 @@ export class CarDataComponent implements OnInit {
       active: true
     }
 
-
-
   }
 
   save() {
@@ -74,12 +77,12 @@ export class CarDataComponent implements OnInit {
     this.dataTrans(0)
 
     this.carService.saveCar(this.car).subscribe(res => {
-      this.tools.toastSuccess(res.message.toString(), "center-center")
+          this.tools.toastSuccess(res.message.toString(), "center-center")
     },error=>{
       this.tools.toastInfo(error.error.message,"bottom-right");
-      for (var hata of error.error.Errors) {
-        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
-         }
+            for (var hata of error.error.Errors) {
+                   this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
+            }
     });
     this.dataLoad=true;
 
@@ -95,7 +98,6 @@ export class CarDataComponent implements OnInit {
       for (var hata of error.error.Errors) {
         this.tools.toastInfo(hata.ErrorMessage, "bottom-right")
       }
-
     });
 
     this.dataLoad=true;
@@ -113,12 +115,6 @@ export class CarDataComponent implements OnInit {
   }
 
   modalClose() {
-
-    this.tools.toastInfo("bir önceki sayfaya dönülüyor", "center-center")
     this.tools.refreshPage();
-
-
-
   }
-
 }

@@ -18,30 +18,29 @@ export class BrandDataComponent implements OnInit {
   }
 
   update(){
-    this.brandService.updateBrand(this.brand).subscribe(res=>{
-      this.tools.toastSuccess(res.message.toString(),"center-center");
+      this.brandService.updateBrand(this.brand).subscribe(res=>{
+            this.tools.toastSuccess(res.message.toString(),"center-center");
     },error=>{
-      this.tools.toastInfo(error.error.message,"bottom-right");
-      for (var hata of error.error.Errors) {
-        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
-         }
+            this.tools.toastInfo(error.error.message,"bottom-right");
+                  for (var hata of error.error.Errors) {
+                        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
+                  }
     });
 
   }
 
   delete(){
-    this.brandService.delBrand(this.brand).subscribe(res=>{
-      this.tools.toastSuccess(res.message.toString(),"center-center")
-    },error=>{
-      this.tools.toastInfo(error.error.message,"bottom-right");
-      for (var hata of error.error.Errors) {
-        this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
-         }
-    });
+            this.brandService.delBrand(this.brand).subscribe(res=>{
+                  this.tools.toastSuccess(res.message.toString(),"center-center")
+            },error=>{
+            this.tools.toastInfo(error.error.message,"bottom-right");
+                  for (var hata of error.error.Errors) {
+                    this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
+                  }
+            });
   }
 
   modalClose(){
-    this.tools.refreshPage();
+        this.tools.refreshPage();
   }
-
 }

@@ -24,10 +24,8 @@ button{
     overflow: hidden;
     display: flex;
     background-color:rgba(0, 0, 0, 0.5) ;
-    
 }
 .modal-content{
-    
     background-color: #fff;
     color:black;
     width: 60%;

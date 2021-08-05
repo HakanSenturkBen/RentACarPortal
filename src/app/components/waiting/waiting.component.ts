@@ -10,10 +10,6 @@ export class WaitingComponent implements OnInit {
 
   constructor() { }
 
-  
-
-  hakan:string[]=["o","o","o","o","o","o","o"]
     ngOnInit(): void {
   }
-
 }

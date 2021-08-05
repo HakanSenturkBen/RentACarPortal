@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
       email: ["", Validators.required],
       password: ["", Validators.required]
     });
-
   }
 
   login() {
@@ -55,15 +54,8 @@ export class LoginComponent implements OnInit {
 
         this.tools.toastSuccess(error.error, "center-center");
         this.nameMember = localStorage.getItem("member");
-
-
-      })
-
-
-    } else {
-
-    }
-
+      });
+    } 
   }
 
   onChange() {
@@ -82,8 +74,5 @@ export class LoginComponent implements OnInit {
       }
       this.childEvent.emit('1');
     }
-
   }
-
-
 }

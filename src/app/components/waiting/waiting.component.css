@@ -5,14 +5,12 @@ body{
     justify-content: center;
     height: 100vh;
     font-family: sans-serif;
-
 }
 ul{
     margin:0;
     padding: 0;
     display: flex;
 }
-
 ul li{
     list-style-type: none;
     font-size: 1rem;
@@ -45,11 +43,9 @@ ul li{
 
     }
 }
-
 ul li:nth-child(1){
     animation-delay: 0s;
 }
-
 ul li:nth-child(2){
     animation-delay: 0.2s;
 }

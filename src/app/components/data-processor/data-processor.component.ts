@@ -29,7 +29,7 @@ export class DataProcessorComponent implements OnInit {
   updateBrandWindow = false;
   updateColorWindow = false;
 
-  onUpdatedData: string;
+  
   secim: string;
   public openDialog: string;
 
@@ -178,5 +178,4 @@ export class DataProcessorComponent implements OnInit {
   addImage() {
     this.addImageWindow = true;
   }
-
 }

@@ -11,5 +11,4 @@ export class MapsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

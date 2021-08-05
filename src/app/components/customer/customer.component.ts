@@ -34,7 +34,6 @@ export class CustomerComponent implements OnInit {
       this.customersDto=response.data;
       this.dataLoaded=true;
     })
-
   }
-
+  
 }

@@ -1,3 +1,4 @@
+import { MapsComponent } from './components/maps/maps.component';
 import { InceptionComponent } from './components/inception/inception.component';
 import { MembershipComponent } from './components/membership/membership.component';
 import { FindeksComponent } from './components/findeks/findeks.component';
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:"findex",component:FindeksComponent},
   {path:"membership",component:MembershipComponent},
   {path:"customers",component:CustomerComponent},
-  {path:"login",component:LoginComponent}
+  {path:"login",component:LoginComponent},
+  {path:"maps",component:MapsComponent}
 
   
 ];

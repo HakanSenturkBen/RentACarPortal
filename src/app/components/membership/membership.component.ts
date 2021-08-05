@@ -135,16 +135,11 @@ export class MembershipComponent implements OnInit {
     }
   }
 
-
   checkButton(index: number) {
-
-
     switch (index) {
       case 2:
         let currentUser = this.userForm.value;
-        
         let customer: CustomerModel = {
-
           id: this.currentCustomer.customerId,
           userId: this.currentCustomer.userId,
           addressId: this.currentCustomer.addressId,
@@ -183,17 +178,13 @@ export class MembershipComponent implements OnInit {
       default:
         break;
     }
-
   }
 
   checkPassword() {
     let control=Object.assign({},this.userForm.value);
-
     if (control.password!=control.passwordAgain) {
       this.tools.toastWarning("parolalar aynı değil","center-center")
     }
-
-
   }
 
 }

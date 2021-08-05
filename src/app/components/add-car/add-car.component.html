@@ -4,6 +4,7 @@
                         <div class="row">
                                 <div class="card">
                                         <div class="card-header card-header-primary">
+
                                           <h4 class="card-title">Kayıt Ekle</h4>
                                         
                                         </div>
@@ -13,14 +14,16 @@
                                                                   <div class="col-md-5 col-sm-5">
                                                                           <label for="brandName" class="bmd-label-floating">Araç adı </label>
                                                                           <select class="form-select" 
-                                                                                  [(ngModel)]="carDetail.brandName"
-                                                                                  #brandName="ngModel"
-                                                                                  name="carDetail.brandName"
-                                                                                  id="brandName"
-                                                                                  required
-                                                                                  [class.is-invalid]="brandName.invalid || brandName.touched"
-                                                                                  type="text">
-                                                                                  <option *ngFor="let brand of brandlers">{{ brand.brandName }}</option>
+                                                                                        [(ngModel)]="carDetail.brandName"
+                                                                                        #brandName="ngModel"
+                                                                                        name="carDetail.brandName"
+                                                                                        id="brandName"
+                                                                                        required
+                                                                                        [class.is-invalid]="brandName.invalid && brandName.touched"
+                                                                                        [class.is-valid]="brandName.valid && brandName.touched"
+                                                                                        type="text">
+                                                                                        <option value="">Marka seçiniz</option>
+                                                                                        <option *ngFor="let brand of brandlers" >{{ brand.brandName }}</option>
                                                                           </select>
                                                                           <div class="valid feedback">
                                                                                   <small class="text-danger" [class.d-none]="brandName.valid || brandName.untouched">listeden seçim yapmalısınız</small>
@@ -31,6 +34,7 @@
                                                                     <label for="colorName">Araç Rengi</label>
                                                                     <select class="form-select "
                                                                                 placeholder="Leave a comment here"
+                                                                                autofocus
                                                                                 id="colorName"
                                                                                 [(ngModel)]="carDetail.colorName"
                                                                                 #colorName="ngModel"
@@ -55,15 +59,14 @@
                                                                                 name="carDetail.dailyPrice"
                                                                                 type="number"
                                                                                 style="height: 50px;"
-                                                                                minvalue="1750"
-                                                                                maxvalue="5550"
+                                                                                (change)="checkValue()"
                                                                                 required
                                                                                 [class.is-invalid]="dailyPrice.invalid && dailyPrice.touched"
                                                                                 [class.is-errors]="dailyPrice.errors">
                                                                     <label for="dailyPrice">Günlük kira</label>
                                                                     <div *ngIf="dailyPrice.errors&& (dailyPrice.invalid && dailyPrice.touched)" class="valid feedback">
                                                                             <small class="text-danger" [class.d-none]="dailyPrice.valid || dailyPrice.untouched">günlük kiralama fiyatı bilgisi gereklidir</small>
-                                                                            <small *ngIf="dailyPrice.errors.min" class="text-danger" >amına godumun berberi</small>
+                                                                            <small *ngIf="dailyPrice.errors.minvalue" class="text-danger" >value error</small>
                                                                   </div>
                                                             </div>
 
@@ -113,16 +116,12 @@
                                                                     class="form-control"
                                                                     id="createDate"
                                                                     placeholder="yyyy-MM-dd"
-                                                                    min="{{ minDate }}"
-                                                                    max="{{maxDate}}"
                                                                     required/>
                                                                 <label for="createDate">Kayıt tarihi</label>
                                                                 <div class="valid feedback">
                                                                   <small class="text-danger" [class.d-none]="createDate.valid || createDate.untouched">kayıt tarihi bilgisi gereklidir.</small>
                                                                 </div>
                                                             </div>
-
-                                                            {{carDetail.createDate|json}}
 
                                                             <div class="col-md-12 col-sm-12 form-floating">
                                                                 <input class="form-control" type="text"
@@ -141,14 +140,15 @@
                                                                     <small class="text-danger" [class.d-none]="description.valid || description.untouched">açıklama bilgisi gereklidir.</small>
                                                                   </div>
                                                             </div>
+                                                            <br>
 
-                                                            <div class="form-group" style="top:20px">
+                                                            <div class="form-group" style="top:30px">
                                                                     <div class="col col-12 col-sm-12">
-                                                                      <button *ngIf="!addCar.form.invalid" type="submit"  class="card-header card-header-warning" style="padding: 10px;">
+                                                                      <button [disabled]="addCar.form.invalid" type="submit"  class="btn card-header card-header-warning" style="padding: 10px;">
                                                                         <span class=" card-category"><i class="material-icons">save</i>Kaydet</span>
                                                                       </button>
                                         
-                                                                      <button (click)="onChange(false)" class="card-header card-header-info" style="padding: 10px;">
+                                                                      <button (click)="onChange(false)" class="btn card-header card-header-info" style="padding: 10px;">
                                                                         <span class=" card-category"><i class="material-icons">logout</i></span>Geri
                                                                       </button>
                                                                     </div>

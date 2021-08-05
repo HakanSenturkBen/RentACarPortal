@@ -1,5 +1,5 @@
-<div class="container">
-        <div class="row">
+<div class="container-fluid">
+        <div class="row ">
               <nav class="navbar hakan">
                       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                               <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 md-lg-0">
@@ -19,23 +19,27 @@
                     <div class="col col-md-6 col-sm6" *ngIf="logining=='1'">
                             <login (childEvent)="olay($event)"></login>
                     </div>
-
+                    
                     <div  *ngIf="logining.length>2">
                               
                             <nav aria-label="Page navigation example">
+                            
                                     <ul class="pagination">
-                                          <li class="page-item">
-                                              <a class="page-link" href="membership" aria-label="Previous"><span class="material-icons" title="üyelik işlemleri" style="color: bisque;">swap_horiz</span></a>
-                                          </li>
-                                          <li class="dropdown">
-                                                <a  role="button" data-bs-toggle="dropdown">{{logining}}</a>
-                                                <ul class="dropdown-menu justify-content-end">
-                                                      <li><a class="dropdown-item" href="membership">Membership</a></li>
-                                                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                      <li><a class="dropdown-item text-dark" (click)="logOut()">Exit</a></li>
+                                        <div class="btn-group">
+                                                <li class="page-item">
+                                                        <a class="page-link" href="membership" aria-label="Previous"><span class="material-icons" title="üyelik işlemleri" style="color: bisque;">swap_horiz</span></a>
+                                                    </li>
+                                                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        {{logining}}
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="membership">Membership</a></li>
+                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item text-dark" (click)="logOut()">Exit</a></li>
                                                 </ul>
                                                 <li class="page-item"> <a (click)="logOut()" class="page-link" aria-label="Next"><span class="material-icons" title="çıkış" style="color: bisque;">launch</span></a>
-                                          </li>
+                                              </div>
+                                         
                                     </ul>
                             </nav>
                     </div>

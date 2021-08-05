@@ -12,7 +12,6 @@ export class ColorsComponent implements OnInit {
   dataLoaded=false;
   colors:ColorModel[]=[];
   filterText="";
-  spin=".";
 
   constructor(private colorService:ColorsService) { }
 

@@ -12,15 +12,13 @@ export class DialogBoxingComponent implements OnInit {
   @Output()  childEvent = new EventEmitter();
 
   constructor() { }
-
-  
+ 
   ngOnInit(): void {
     if(this.messages==null){
       this.messages="Kayıt silinecek emin misiniz?"
     }
 
   }
-
   onChange(value:any) {
     this.childEvent.emit(value);
   }

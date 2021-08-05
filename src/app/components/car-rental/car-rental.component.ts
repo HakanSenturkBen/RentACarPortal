@@ -6,7 +6,6 @@ import { PaymentServiceService } from 'src/app/services/payment-service.service'
 import { RentalService } from 'src/app/services/rental.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { RentalModel } from '../rental/rentalModel';
-import { FormsModule } from '@angular/forms';
 import { CreditCard } from './cardModel';
 
 
@@ -212,7 +211,6 @@ export class CarRentalComponent implements OnInit {
 
     this.tools.reDirection("cars");
   }
-
 
   newGuid() {
     return 'xXxx-xxxx'.replace(/[xy]/g, function (c) {

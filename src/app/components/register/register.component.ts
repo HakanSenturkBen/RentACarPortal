@@ -40,8 +40,6 @@ export class RegisterComponent implements OnInit {
     this.createCompanyForm();
     this.createAddressForm();
     this.createCardForm();
-
-
   }
 
   createUserForm() {
@@ -53,7 +51,7 @@ export class RegisterComponent implements OnInit {
       password: ["", Validators.required],
       passwordAgain: ["", Validators.required],
       citizenShipNumber: ["", Validators.required],
-    })
+    });
   }
 
   createCompanyForm() {
@@ -62,7 +60,7 @@ export class RegisterComponent implements OnInit {
       taxOfficeName: ["", Validators.required],
       taxNumber: ["", Validators.required],
       coPhoneNumber: ["", Validators.required],
-    })
+    });
   }
 
   createAddressForm() {
@@ -71,7 +69,7 @@ export class RegisterComponent implements OnInit {
       address2: ["", Validators.required],
       city: ["", Validators.required],
       state: ["", Validators.required],
-    })
+    });
   }
 
   createCardForm() {
@@ -80,7 +78,7 @@ export class RegisterComponent implements OnInit {
       ccv: ["", Validators.required],
       validationDate: ["", Validators.required],
       cardNumber: ["", Validators.required],
-    })
+    });
   }
 
   current(index: number) {
@@ -111,10 +109,7 @@ export class RegisterComponent implements OnInit {
       } else {
         this.menu[i] = "";
       }
-
-
     }
-
   }
 
   checkButton(index: number) {
@@ -140,21 +135,12 @@ export class RegisterComponent implements OnInit {
         }
 
         break;
-
-      default:
-
-        break;
     }
-
   }
 
   addMembership() {
-
     let currentUser = this.userForm.value;
     let userId = { userId: 0 };
-
-
-    console.log(this.companyForm, this.addressForm, this.cardForm, this.userForm);
 
     if (this.companyForm.valid && this.addressForm.valid && this.cardForm.valid && this.userForm.valid) {
 

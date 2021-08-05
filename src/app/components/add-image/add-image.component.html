@@ -1,38 +1,47 @@
 <div class="modal">
-    <div class="modal-content">
-        <div class="content">
-            <div class="card">
-                <div class="card-header-success text-center">
-                    <h4>Otomobil resmi kaydet</h4>
+        <div class="modal-content">
+            <div class="container">
                     <div class="card">
-                        <div class="card-body ">
-                            <div class="card">
-                                <div class="card-body">
-                                    <button (click)="onChange(false)">Çık</button>
-                                    <button (click)="savePaths()">Araç resimleri seri kaydet</button>
-                                    <div class="card-header-warning">
-                                        <select autofocus class="form-control" id="" style="padding: 10px;" name="carId" [(ngModel)]="carId">
-                                            <option selected >Otomobil Listesi</option>
-                                            <option value="{{car.carId}}" *ngFor="let car of carList">{{car.brandName}} {{car.colorName}} </option>
-                                        </select>
-                                    </div>
+                            <div class="card-header card-header-danger text-center">
+                                    <h4>Otomobil resmi kaydet</h4>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="card-body aling-items-center">
+                                        <div class="row justify-content-center aling-items-center">
+                                                <div class="container">
+                                                        <label class="text-danger" for="carList">Araç Listesi</label>
+                                                        <select  
+                                                                    id="carList" 
+                                                                    style="padding: 10px;" 
+                                                                    [(ngModel)]="carId"
+                                                                    name="carId" 
+                                                                    class="form-control btn btn-lg btn-info"
+                                                                    required>
+                                                                    <option value="" >Otomobil Listesi</option>
+                                                                    <option *ngFor="let car of carList" value="car.carId" >{{car.brandName}} {{car.colorName}} </option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                                <div class="row">
+                                                        <div class="col-md-6">
+                                                                <button (click)="onChange(false)" class="btn btn-lg btn-warning">Çık</button>
+                                                                <button (click)="savePaths()" class="btn btn-lg btn-info">Araç resimleri  kaydet</button>
+                                                        </div>
+                                                </div>
+                                     </div>
                     </div>
                 </div>
-            </div>
+                <div class="content">
+                            <div class="card">
+                                    <div class=" d-flex justify-content-center">            
+                                            <button class="card-header card-header-warning text-center">
+                                                    <h4>Otomobil resmi yapıştır</h4>
+                                            </button>
+                                        </div>       
+                               <div autofocus class="card-body" (paste)="onPaste($event)">
+                                       <small>buraya tıklayıp ctrl-v ile resmi yapıştırabilirsiniz</small>
+                                        <img  #imgRenderer />
+                                </div>
+                         </div>
+                 </div>
         </div>
-        <div class="container">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card">
-                        <div class="card-body" (paste)="onPaste($event)">
-                            <img width="1000" height="600" #imgRenderer />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

@@ -7,7 +7,6 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { CarService } from 'src/app/services/car.service';
 import { BrandService } from 'src/app/services/brand.service';
 import { ColorsService } from 'src/app/services/colors.service';
-import { getLocaleDateTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'add-car',
@@ -23,8 +22,6 @@ export class AddCarComponent implements OnInit {
     private brand: BrandService,
     private color: ColorsService) { }
 
-  minDate: string;
-  maxDate: string;
   brandlers: BrandModel[];
   colorlers: ColorModel[];
   carDetail: CarInfoModel = {
@@ -39,21 +36,11 @@ export class AddCarComponent implements OnInit {
   };
 
   @Output() childEvent = new EventEmitter();
+
   car: CarModel;
 
 
   ngOnInit(): void {
-    let mouth: number = new Date().getMonth() + 1;
-
-    if (mouth > 9) {
-      this.minDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() - 5);
-      this.maxDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() + 5);
-
-    } else {
-
-      this.minDate = new Date().getFullYear() + "-" + "0" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() - 5);
-      this.maxDate = new Date().getFullYear() + "-" + "0" + (new Date().getMonth() + 1) + "-" + (new Date().getDate() + 5);
-    }
 
     this.brand.getBrands().subscribe(res => { this.brandlers = res.data; });
     this.color.getColors().subscribe(res => { this.colorlers = res.data; });
@@ -65,28 +52,28 @@ export class AddCarComponent implements OnInit {
     let colorID: number;
     let brandID: number;
     for (let color of this.colorlers) {
-      if (color.colorName == this.carDetail.colorName) {
-        colorID = color.id;
-      }
+          if (color.colorName == this.carDetail.colorName) {
+            colorID = color.id;
+          }
     }
     for (let brand of this.brandlers) {
-      if (brand.brandName == this.carDetail.brandName) {
-        brandID = brand.id;
-      }
+          if (brand.brandName == this.carDetail.brandName) {
+            brandID = brand.id;
+          }
     }
     let tarih = (this.carDetail.createDate.toString()).split("-", 3);
     let tarih1 = tarih[2] + "-" + tarih[1] + "-" + tarih[0]
 
     this.car = {
-      id: carid,
-      brandId: brandID,
-      colorId: colorID,
-      dailyPrice: this.carDetail.dailyPrice,
-      modelYear: this.carDetail.modelYear,
-      description: this.carDetail.description,
-      createDate: tarih1,
-      active: true
-    }
+          id: carid,
+          brandId: brandID,
+          colorId: colorID,
+          dailyPrice: this.carDetail.dailyPrice,
+          modelYear: this.carDetail.modelYear,
+          description: this.carDetail.description,
+          createDate: tarih1,
+          active: true
+        }
 
 
 
@@ -98,12 +85,12 @@ export class AddCarComponent implements OnInit {
     this.dataTrans(0)
 
     this.carService.saveCar(this.car).subscribe(res => {
-      this.tools.toastSuccess(res.message.toString(), "center-center")
+          this.tools.toastSuccess(res.message.toString(), "center-center")
     }, error => {
-      this.tools.toastInfo(error.error.message, "bottom-right");
-      for (var hata of error.error.Errors) {
-        this.tools.toastInfo(hata.ErrorMessage, "bottom-right")
-      }
+          this.tools.toastInfo(error.error.message, "bottom-right");
+          for (var hata of error.error.Errors) {
+                this.tools.toastInfo(hata.ErrorMessage, "bottom-right")
+          }
     });
 
     this.modalClose(value)
@@ -112,11 +99,25 @@ export class AddCarComponent implements OnInit {
 
   modalClose(value: any) {
     this.onChange(value);
-    //this.tools.refreshPage();
+   
   }
 
   onChange(value: any) {
     this.childEvent.emit(value);
+  }
+
+  checkValue(){
+    
+    if(this.carDetail.dailyPrice<1750){
+        this.carDetail.dailyPrice=null;
+        this.tools.toastInfo("günlük kira için alt limit = 1750 TL","center-center");
+        
+
+    } else if(this.carDetail.dailyPrice>5500){
+        this.carDetail.dailyPrice=null;
+        this.tools.toastInfo("günlük kira için üst limit = 5500 TL","center-center");
+    }
+
   }
 
 }

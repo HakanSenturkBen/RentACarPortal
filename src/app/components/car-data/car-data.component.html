@@ -26,20 +26,23 @@
                                           </div>
                                   </div>
                                 <div class="col-md-9">
+                                        <form #carForm="ngForm">
                                         <div class="card">
                                                 <div class="card-header card-header-primary">
                                                         <h4 class="card-title">Kaydı Düzenle</h4>
                                                 </div>
                                                 <div class="card">
                                                         <div class="card-body">
-                                                                <form #carForm="ngForm">
+                                                               
                                                                   <div class="row ">
                                                                           <div class="col-md-5">
                                                                                   <label class="bmd-label-floating">Araç adı </label>
                                                                                   <select class="form-select" 
                                                                                               [(ngModel)]="carDetail.brandName" 
                                                                                               #brandName="ngModel"
-                                                                                              name="carDetail.brandName">
+                                                                                              name="carDetail.brandName"
+                                                                                              required>
+                                                                                              <option value="">Araç markaları</option>
                                                                                               <option *ngFor="let brand of brandlist"> {{ brand.brandName }} </option>
                                                                                   </select>
                                                                           </div>
@@ -119,7 +122,6 @@
                                                                                   </div>
                                                                     </div>
                                                                   </div>
-                                                                </form>
                                                         </div>
                                                 </div>
                                                 <div class="container-fluid">
@@ -146,6 +148,8 @@
                                                   </div>
                                           </div>
                                   </div>
+                                  </form>
+
                             </div>
                           </div>
                         </div>

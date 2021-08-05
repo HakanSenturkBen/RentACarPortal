@@ -11,5 +11,4 @@ export class InceptionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

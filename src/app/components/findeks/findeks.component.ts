@@ -68,13 +68,7 @@ export class FindeksComponent implements OnInit {
 
       let customerModel = Object.assign({}, this.memberShip.value)
       customerModel.findexPoint = this.puan;
-      // this.customerService.add(customerModel).subscribe(response=>{
-      //   this.tools.toastSuccess("Congratulation","center-center")
-      // })
-
     } this.tools.toastSuccess("eksikleri tamamnla", "center-center")
-
-
 
   }
 
@@ -132,9 +126,6 @@ export class FindeksComponent implements OnInit {
       this.onChange(event);
       
     } else this.tools.toastSuccess("Bütün alanlardan seçim yapın lütfen", "center-center");
-
-
-
   }
 
   login() {
@@ -154,12 +145,5 @@ export class FindeksComponent implements OnInit {
     let id: any = localStorage.getItem("username");
     id = JSON.parse(id);
     var yeni = Object.assign({}, id, element);
-    // this.customerService.update(yeni).subscribe(res=>{
-    //   this.toastrService.info("bilgileriniz güncellendi","",{progressBar:true,positionClass:'toast-center-center'})
-    // },error=>{this.toastrService.previousToastMessage});
-
-
-
-
   }
 }

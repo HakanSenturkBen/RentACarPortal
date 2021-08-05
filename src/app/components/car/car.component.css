@@ -268,7 +268,12 @@ li.selected {
     margin-bottom: 0.75rem;
   }
   
-  @media (min-width: 576px) {
+  @media (min-width: 370px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  @media (min-width: 376px) {
     .card-columns {
       column-count: 3;
       column-gap: 1.25rem;
@@ -279,3 +284,40 @@ li.selected {
       width: 100%;
     }
   }
+
+  .hover-overlay-container {
+    position: relative;
+    width: 290px;
+    height: 140px;
+    }
+    .hover-overlay-container:hover .overlay-image {
+    opacity: 0.6;
+    transform: scale(1.10);
+    }
+    .hover-overlay-container:hover .overlay-btn-container {
+    opacity: 1;
+    }
+    .hover-overlay-container .overlay-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    transition: all .5s ease;
+    backface-visibility: hidden;
+    }
+    .hover-overlay-container .overlay-btn-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transition: .5s ease;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    }
+    .hover-overlay-container .overlay-btn-container .overlay-btn {
+    color: rgb(253, 249, 249);
+    font-size: 16px;
+    padding: 10px 16px;
+    background-color: rgb(139, 29, 21);
+    text-decoration: none;
+    }
