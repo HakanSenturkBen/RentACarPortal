@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
 
   logOut(){
     localStorage.removeItem("member")
+    localStorage.removeItem("token")
     this.tools.refreshPage();
   }
 

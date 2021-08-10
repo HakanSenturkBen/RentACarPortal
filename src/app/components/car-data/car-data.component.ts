@@ -79,7 +79,8 @@ export class CarDataComponent implements OnInit {
     this.carService.saveCar(this.car).subscribe(res => {
           this.tools.toastSuccess(res.message.toString(), "center-center")
     },error=>{
-      this.tools.toastInfo(error.error.message,"bottom-right");
+      this.tools.toastInfo(error.error.Message,"bottom-right");
+      console.log(error);
             for (var hata of error.error.Errors) {
                    this.tools.toastInfo(hata.ErrorMessage,"bottom-right")
             }

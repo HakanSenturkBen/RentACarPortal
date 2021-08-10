@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -41,6 +42,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MembershipComponent } from './components/membership/membership.component';
 import { InceptionComponent } from './components/inception/inception.component';
 import { RentalDirective } from './directive/rental.directive';
+import { AngularTiltModule } from 'angular-tilt';
 
 
 
@@ -88,11 +90,15 @@ import { RentalDirective } from './directive/rental.directive';
     NgxMaskModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    AngularTiltModule
     
     
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor, multi:true}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

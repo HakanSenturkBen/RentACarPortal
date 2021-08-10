@@ -1,3 +1,4 @@
+import { LoginGuard } from './quards/login.guard';
 import { MapsComponent } from './components/maps/maps.component';
 import { InceptionComponent } from './components/inception/inception.component';
 import { MembershipComponent } from './components/membership/membership.component';
@@ -16,7 +17,6 @@ import { CustomerComponent } from './components/customer/customer.component';
 
 const routes: Routes = [
   {path:"",pathMatch:"full",component:InceptionComponent},
-  {path:"cars",component:CarComponent},
   {path:"cars/brand/:brandId",component:CarComponent},
   {path:"cars/color/:colorId",component:CarComponent},
   {path:"detail/:carId",component:CarDetailComponent},
@@ -27,6 +27,7 @@ const routes: Routes = [
   {path:"membership",component:MembershipComponent},
   {path:"customers",component:CustomerComponent},
   {path:"login",component:LoginComponent},
+  {path:"cars",component:CarComponent, canActivate:[LoginGuard]},
   {path:"maps",component:MapsComponent}
 
   
