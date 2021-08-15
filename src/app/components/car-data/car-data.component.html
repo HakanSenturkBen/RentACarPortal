@@ -39,6 +39,7 @@
                                                                                   <label class="bmd-label-floating">Araç adı </label>
                                                                                   <select class="form-select" 
                                                                                               [(ngModel)]="carDetail.brandName" 
+                                                                                              style="padding: 5px;"
                                                                                               #brandName="ngModel"
                                                                                               name="carDetail.brandName"
                                                                                               required>
@@ -51,6 +52,7 @@
                                                                                   <label class="bmd-label-floating">Araç Rengi</label>
                                                                                   <select class="form-select" 
                                                                                                [(ngModel)]="carDetail.colorName" 
+                                                                                               style="padding: 5px;"
                                                                                                #colorName="ngModel"
                                                                                               name="carDetail.colorName">
                                                                                               <option *ngFor="let color of colorlist"> {{ color.colorName }} </option>

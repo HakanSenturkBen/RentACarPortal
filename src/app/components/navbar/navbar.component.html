@@ -16,9 +16,12 @@
 
                     </div>
 
-                    <div class="col col-md-6 col-sm6" *ngIf="logining=='1'">
+                    
+
+                     <div class="d-flex flex-wrap align-items-center" *ngIf="logining=='1'">
                             <login (childEvent)="olay($event)"></login>
                     </div>
+                
                     
                     <div  *ngIf="logining.length>2">
                               

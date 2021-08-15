@@ -8,8 +8,7 @@ body{
     height: 200vh;
 }
 button{
-   
-    padding: .25rem;
+    
     cursor:pointer;
 }
 .modal{
@@ -31,7 +30,7 @@ button{
     width: 60%;
     max-width: 100%;
     max-height: 100%;
-    margin: 2rem;
+    /* margin: 2rem; */
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 20 px rgba(0, 0, 0, 0.8);
@@ -71,12 +70,12 @@ button{
     html{
         font-size: 14px;
     };
-    .modal-content{width: 80%;}
+    .modal-content{width: 100%;}
 }
 @media (max-width:767px) {
     html{
         font-size: 12px;
     }
-    
+    .modal-content{width: 100%;}
     
 }

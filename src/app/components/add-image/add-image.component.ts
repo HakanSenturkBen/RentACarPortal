@@ -62,31 +62,23 @@ export class AddImageComponent implements OnInit {
     }
   }
 
-  
+  choice(p:any){
+    let car=p.target.value;
+    this.currentCar=JSON.parse(car);
+  }
 
-  savePaths()
-  {
-    for (const iterator of this.carList) {
-      if(iterator.carId==this.carId){
-        this.currentCar=iterator;
-      }
-      
+  savePaths()  {
+     for (let index = 1; index <6; index++) {
+       let image:CarImageModel={
+             id: 0,
+             carId: this.currentCar.carId,
+             imagePath: "./assets/"+this.currentCar.brandName+"0"+index+".png",
+             date: new Date()};  
+       
+       this.carImageService.addCarImagePaths(image).subscribe(res=>{
+               this.tools.toastSuccess(this.currentCar.brandName+res.message,"center-center");
+       });
     }
-    for (let index = 1; index <6; index++) {
-      let image:CarImageModel={
-        id: 0,
-        carId: this.currentCar.carId,
-        imagePath: "./assets/"+this.currentCar.brandName+"0"+index+".png",
-        date: new Date()};  
-      console.log("image", image)
-      this.carImageService.addCarImagePaths(image).subscribe(res=>{
-        this.tools.toastSuccess(this.currentCar.brandName+res.message,"center-center");
-      })
-
-      
-    }
-    
-    
   }
 
 }

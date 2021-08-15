@@ -13,18 +13,24 @@
                                                                     id="carList" 
                                                                     style="padding: 10px;" 
                                                                     [(ngModel)]="carId"
+                                                                    #currentCar="ngModel"
                                                                     name="carId" 
                                                                     class="form-control btn btn-lg btn-info"
+                                                                    (change)=choice($event)
+                                                                    [class.is-invalid]="currentCar.touched && currentCar.invalid"
                                                                     required>
                                                                     <option value="" >Otomobil Listesi</option>
-                                                                    <option *ngFor="let car of carList" value="car.carId" >{{car.brandName}} {{car.colorName}} </option>
+                                                                    <option *ngFor="let car of carList" value="car.carId"  [value]="car | json">{{car.brandName}} {{car.colorName}} </option>
                                                         </select>
                                                 </div>
                                             </div>
                                                 <div class="row">
                                                         <div class="col-md-6">
+                                                                <small class="text-danger" *ngIf="currentCar.touched && currentCar.invalid">seçim yapınız yapmadınız</small>
+                                                                <small class="text-danger" *ngIf="currentCar.untouched && currentCar.invalid">işlem yapmak için araç listesinden seçim yapınız</small>
                                                                 <button (click)="onChange(false)" class="btn btn-lg btn-warning">Çık</button>
-                                                                <button (click)="savePaths()" class="btn btn-lg btn-info">Araç resimleri  kaydet</button>
+                                                                <button *ngIf="currentCar.valid || currentCar.touched" (click)="savePaths()" class="btn btn-lg btn-info" [disabled]="currentCar.touched && currentCar.invalid">Araç resimleri  kaydet</button>
+                                                                
                                                         </div>
                                                 </div>
                                      </div>

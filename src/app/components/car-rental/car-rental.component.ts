@@ -85,8 +85,8 @@ export class CarRentalComponent implements OnInit {
   }
 
   choice(p: any) {
-    let hakan = p.target.value;
-    this.kart = JSON.parse(hakan);
+    let card = p.target.value;
+    this.kart = JSON.parse(card);
   }
 
   changeProgress(count: number) {

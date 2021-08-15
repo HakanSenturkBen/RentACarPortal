@@ -23,7 +23,6 @@ export class LoginGuard implements CanActivate {
        return true;
      }else{
        this.router.navigate(["login"])
-       this.tools.toastSuccess("Sisteme giriş yapmalısınız","center-center")
        return false;
      }
 

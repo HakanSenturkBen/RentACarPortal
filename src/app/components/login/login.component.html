@@ -1,33 +1,142 @@
 
-<Form [formGroup]="loginForm" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <div class="col-12 col-lg-auto mb-3 mb-lg-0 ">
-                  <button type="submit " (click)="onChange()" class="rightsuccess"><i class="material-icons">login</i></button>
-          </div>
-          <div class="col col-5 pull-right">
-                <div class="col-12 col-lg-auto mb-3 mb-lg-0  form-floating" >
-                        <input class="form-control "
-                                    placeholder="Leave a comment here" 
-                                    id="password" 
-                                    type="password"
-                                    (keyup.enter)="onChange()"
-                                    required
-                                    formControlName="password">
-                        <label for="password">parola</label>
-                </div>
-          </div>
-          <div class="col-12 col-lg-auto mb-3 mb-lg-0 ">
-                <div class="col col-5 pull-right">
-                        <div class="col-12 col-lg-auto mb-3 mb-lg-0  form-floating">
+<div *ngIf="tespit" >  
+        <div *ngIf="!dataLoad">
+                <head>
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+                <style>
+                        .loader {
+                                
+                                border: 1px solid #f3f3f3;
+                                border-radius: 50%;
+                                /* border-top: 3px solid #be256c;
+                                border-right: 3px solid #d26698;
+                                border-bottom: 3px solid #e5a8c4;
+                                border-left: 3px solid #f9e9f0; */
+                                width: 50px;
+                                height: 50px;
+                                -webkit-animation: spin .5s linear infinite;
+                                animation: spin 1s linear infinite;
+                                background: -webkit-repeating-radial-gradient( left,#26C6DA, #0299A9    );
+                                }
+
+                                @-webkit-keyframes spin {
+                                0% { -webkit-transform: rotate(0deg); }
+                                100% { -webkit-transform: rotate(360deg); }
+                                }
+
+                                @keyframes spin {
+                                0% { transform: rotate(0deg); }
+                                100% { transform: rotate(360deg); }
+                                }
+
+                        </style>
+                        </head>
+
+                        <div class="loader"></div>
+                        
+
+                <!-- <app-waiting></app-waiting> -->
+      </div>
+        <Form [formGroup]="loginForm" >
+                <div class="d-flex flex-wrap align-items-center">
+                        <div class="  form-floating">
                                 <input class="form-control "  
                                             placeholder="Leave a comment here" 
                                             id="email" 
                                             type="text"
                                             (keyup.enter)="onChange()" 
                                             required
-                                            formControlName="email">
+                                           formControlName="email">
                                 <label for="dailyPrice">Üye adı</label>
                         </div>
-                </div>
-          </div>
 
-</Form>
+                        <div class="  form-floating" >
+                                <input class="form-control "
+                                            placeholder="Leave a comment here" 
+                                            id="password" 
+                                            type="password"
+                                            (keyup.enter)="onChange()"
+                                            required
+                                            formControlName="password">
+                                <label for="password">parola</label>
+                        </div>
+                        <button type="submit " (click)="onChange()" ><i class="material-icons">login</i></button>
+                </div>
+        </Form>
+</div>
+
+<div *ngIf="!tespit">
+        <section class="bg-black overflow-hidden">
+                <div class="row py-15 py-xl-20 d-flex flex-column container level-3 min-vh-100">
+                        <div class="row align-items-center justify-content-center my-auto">
+                                <div class="col-md-8 col-lg-10 col-xl-12">
+                                        <div class="card" style="border-top-left-radius: 30px; border-top-right-radius: 30px">
+                                                <div class="card-header bg-white text-center pb-0">
+                                                        <h4 class="fs-4 mb-1">Giriş Yap</h4>
+                                                </div>
+                                                <div class="card-body bg-white">
+                                                        <div class="card-footer bg-opaque-black inverted text-center">
+                                                                <p class="text-danger">Henüz üye olmadınız mı? <a href="membership" class="underline">Kayıt olun</a></p>
+                                                        </div>
+                                                        <div class="d-grid">
+                                                                <a href="" class="btn btn-outline-red btn-with-icon text-black-hover"> Google hesabınızla giriş yapın  
+                                                                        <i class="material-icons">verified</i>
+                                                                        <img src="http://simpleicon.com/wp-content/uploads/google.png" alt="" width="20" height="25">
+                                                                        </a>
+                                                        </div>
+                                                        <div class="text-muted text-center small py-2">yada email hesabınzı kullanın</div>
+                                                        <Form [formGroup]="loginForm" >
+                                                                <div class=" form-floating">
+                                                                        <input class="form-control "  
+                                                                                    placeholder="Leave a comment here" 
+                                                                                    id="email" 
+                                                                                    type="text"
+                                                                                    (keyup.enter)="onChange()" 
+                                                                                    autofocus
+                                                                                    required
+                                                                                    formControlName="email">
+                                                                       <label for="dailyPrice">Üye adı</label>
+                                                               </div>
+                                                               <div class="form-floating" >
+                                                                      <input class="form-control "
+                                                                                  placeholder="Leave a comment here" 
+                                                                                  id="password" 
+                                                                                  type="password"
+                                                                                  (keyup.enter)="onChange()"
+                                                                                  required
+                                                                                  formControlName="password">
+                                                                      <label for="password">parola</label>
+                                                              </div>
+                                                              
+                                                              <div class="d-grid mb-2">
+                                                                      <a type="submit " class ="btn btn-lg btn-primary" (click)="onChange()" >Giriş Yap<i class="material-icons">login</i></a>
+                                                                      
+                                                                      
+                                                              </div>
+                                                              <div *ngIf="!dataLoad">
+                                                                        <app-waiting></app-waiting>
+                                                              </div>
+                                                              <div class="form-check">
+                                                                <label class="form-check-label">Beni hatırla
+                                                                  <input class="form-check-input" 
+                                                                              type="checkbox"
+                                                                              required>
+                                                                    <span class="form-check-sign">
+                                                                              <span class="check"></span>
+                                                                  </span>
+                                                                </label>
+                                                        </div>
+                                                        <a href="forgot-password.html" class="underline ">Parolanızı mı unuttunuz?</a>
+                                                </Form>
+                                                </div>
+                                                
+                                                <div class="collapse d-md-block" id="sidenavCollapse">
+                                                        <img src="./assets/login.png" alt="">                                                
+                                                </div>
+                        
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </section>
+ </div>

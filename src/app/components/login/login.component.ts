@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from './../../services/customer.service';
 import { AuthService } from './../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -17,12 +18,20 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   public nameMember: string = "";
   public say: number = 0;
+  public tespit=true;
+  dataLoad=true;
+  
+
   constructor(private tools: ToolsService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService,
+    private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.tespit=this.activatedRoute.toLocaleString().length<32;
+    
+    
     this.loginForm = this.formBuilder.group({
       email: ["", Validators.required],
       password: ["", Validators.required]
@@ -43,10 +52,15 @@ export class LoginComponent implements OnInit {
         })
         localStorage.setItem("member", res.message)
         localStorage.setItem("token", res.data.token)
-        this.tools.toastSuccess(res.message, "center-center");
+        this.tools.toastSuccess("parola onaylandı", "center-center");
 
         this.say = 0;
-        this.tools.refreshPage();
+        if(this.tespit){
+          this.tools.refreshPage();
+        }else{
+          this.tools.directionPage("cars");
+        }
+        
 
       }, error => {
         localStorage.removeItem("member");
@@ -59,7 +73,9 @@ export class LoginComponent implements OnInit {
   }
 
   onChange() {
+    this.dataLoad=false;
     this.login();
+    
 
     this.nameMember = localStorage.getItem("member");
     if (this.nameMember != null && this.nameMember.length > 1) {

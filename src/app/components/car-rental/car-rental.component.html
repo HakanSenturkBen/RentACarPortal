@@ -111,7 +111,7 @@
                                                                 <h6>Sistemde kayıtlı kartlarınız</h6>
                                                           </div>
                                                           <div class="col-md-8 col-sm-7">
-                                                                  <select name="cardList" id=""   (change)="choice($event)" >
+                                                                  <select name="cardList" id=""   (change)="choice($event)" style="padding: 5px;" >
                                                                               <option value="">Seçiminiz</option>
                                                                               <option  *ngFor="let card of cards" [value]="card | json" >{{card.cardHolderName}} {{card.cardNumber}}</option>
                                                                   </select>
@@ -122,7 +122,7 @@
                                                           <hr style=" border-top: 5px dashed rgb(8, 8, 8);background-color:white; ">
                                                 </div>
                                                   <div class="col-md-6 col-sm-6">
-                                                        <label for="carHolderNane" class="form-label">Adınız</label>
+                                                        <label for="cardHolderName" class="form-label">Adınız</label>
                                                         <input type="text"
                                                                     [(ngModel)]="kart.cardHolderName" 
                                                                     #holderName="ngModel" 
@@ -147,7 +147,7 @@
                                                                     name="kart.cardNumber" 
                                                                     type="text"
                                                                     [class.is-invalid]="cardNumber.invalid && cardNumber.touched" 
-                                                                    [class.is-valid]="cardNumber.valid && cardNumber.touched" 
+                                                                    [class.is-valid]="cardNumber.valid && cardNumber.dirty" 
                                                                     mask="0000 0000 0000 0000" 
                                                                     minlength="16"
                                                                     maxlength="20"
